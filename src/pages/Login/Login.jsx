@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img1 from '../../assets/category/robbit.jpg'
 import Container from '../../components/Ui/Container/Container';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa6';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 
 const Login = () => {
@@ -12,17 +13,38 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
     const { loggedUser,googleUser } = useAuth();
 
+    const navigate = useNavigate()
+    const location = useLocation()
+    const axiosPublic = useAxiosPublic()
+
+    const from = location.state?.from.pathname || '/'
+
     const onSubmit = (data) => {
         console.log(data);
         loggedUser(data.email, data.password)
             .then(result => {
                 console.log('user login successfully', result.user)
+                navigate(from, {replace: true})
             })
     }
 
     const handleGoogleLogin = (googleProvider) =>{
         googleUser(googleProvider)
-        .then(()=> console.log('google login user....'))
+        .then((result)=> {
+            console.log(result.user);
+            const user ={
+                email:result.user.email,
+                name:result.user.displayName,
+            }
+            axiosPublic.post('/users-info', user)
+                    .then(res =>{
+                        if(res.data.insertedId || res.data.insertedId=== null){
+                            console.log('user added to the database');
+                            navigate('/')
+                        }
+                    })
+            
+        })
     }
     return (
         <div className='bg-[#f8f3e8]'>

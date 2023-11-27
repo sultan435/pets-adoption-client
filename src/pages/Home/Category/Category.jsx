@@ -17,7 +17,7 @@ const Category = () => {
         }
     })
 
-    console.log(categories)
+    // console.log(categories)
     return (
         <div className="pt-16">
             <Container>

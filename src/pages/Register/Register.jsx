@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/category/pet.png'
 import Container from '../../components/Ui/Container/Container';
 import { useContext, useState } from 'react';
@@ -13,10 +13,11 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
-    const {register, handleSubmit,reset} = useForm()
+    const {register, handleSubmit} = useForm()
     const {createUser, updateUserProfile} = useContext(AuthContext)
    
     const axiosPublic= useAxiosPublic()
+    const navigate = useNavigate()
 
     const onSubmit = async(data) =>{
         console.log(data);
@@ -33,8 +34,20 @@ const Register = () => {
             .then(result=>{
                 console.log(result.user);
                 updateUserProfile(data.name, res.data.data.display_url)
-                .then(()=> console.log('name update photo'))
-                reset()
+                .then(()=> {
+                    const user={
+                        name: data.name,
+                        email: data.email,
+                    }
+                    axiosPublic.post('/users-info', user)
+                    .then(res =>{
+                        if(res.data.insertedId){
+                            console.log('user added to the database');
+                            navigate('/')
+                        }
+                    })
+                })
+                // reset()
             })
         }
 

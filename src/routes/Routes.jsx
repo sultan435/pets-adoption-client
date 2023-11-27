@@ -15,6 +15,7 @@ import MyDonation from "../pages/Dashboard/UserProfile/MyDonation";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import UpdatePet from "../pages/Dashboard/UserProfile/UpdatePet";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Routes = createBrowserRouter([
@@ -50,7 +51,7 @@ const Routes = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             //user dashboard
             {
