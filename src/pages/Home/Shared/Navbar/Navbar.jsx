@@ -10,7 +10,7 @@ import { AuthContext } from "../../../../provider/AuthProvider";
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-    const { user, logout,isLoading } = useContext(AuthContext)
+    const { user, logout } = useContext(AuthContext)
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -33,9 +33,6 @@ const Navbar = () => {
         }
     })
 
-    if(isLoading){
-        <p>is loading....</p>
-    }
 
     // menu navLinks
     const navItems = <>

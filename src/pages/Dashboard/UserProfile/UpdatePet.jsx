@@ -34,7 +34,7 @@ const UpdatePet = () => {
                 longDescription:data.longDescription,
                 image:res.data.data.display_url,
             }
-            const updatePet = await axiosSecure.patch(`/user/pet-create/${_id}`, petItem)
+            const updatePet = await axiosSecure.patch(`/user/pet-update/${_id}`, petItem)
             // console.log(addPet.data);
             if(updatePet.data.modifiedCount>0){
                 Swal.fire({

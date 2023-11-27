@@ -1,20 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../../components/Ui/Container/Container";
 import SectionTitle from "../../components/Ui/SectionTitle/SectionTitle";
 import DonationCampaignCard from "./DonationCampaignCard";
+import useAllDonationCampaigns from "../../hooks/useAllDonationCampaigns";
 
 const DonationCampaigns = () => {
-    const axiosSecure = useAxiosSecure()
-
-    const { data: donationsItem = [] } = useQuery({
-        queryKey: ["donation-campaigns"],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/user/donation-campaign')
-            return res.data;
-        }
-    })
-    console.log(donationsItem)
+    const [donationsItem] = useAllDonationCampaigns()
     return (
         <div className="mt-24">
             <Container>

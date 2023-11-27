@@ -26,8 +26,7 @@ const MyDonationCampaigns = () => {
             <div className="px-8">
                 <SectionTitle subHeading="Hurry Up!" heading="MANAGE ALL ITEMS"></SectionTitle>
                 <div className="overflow-x-auto rounded-lg">
-                    <table className="table">
-                        {/* head */}
+                    <table className="table">                    
                         <thead>
                             <tr className="bg-[#f1823d] text-[#333333]">
                                 <th className="text-lg py-4">
