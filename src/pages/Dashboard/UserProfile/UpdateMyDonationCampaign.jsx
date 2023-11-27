@@ -1,19 +1,18 @@
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
-import moment from "moment";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const CreateDonationCampaign = () => {
-    const { register, handleSubmit, reset } = useForm()
-
-    const axiosPublicHook = useAxiosPublic()
+const UpdateMyDonationCampaign = () => {
+    const { register, handleSubmit } = useForm()
+    const { name, shortDescription, maximumAmount, highestAmount, longDescription, _id } = useLoaderData()
     const axiosSecure = useAxiosSecure()
-    const { user } = useAuth()
+    const axiosPublicHook = useAxiosPublic()
+
 
     const onSubmit = async (data) => {
         // console.log(data)
@@ -25,24 +24,19 @@ const CreateDonationCampaign = () => {
             }
         })
 
-        const dateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-        const progress = 60;
-        if (user && user.email && res.data.success) {
-            const petItem = {
-                name: data.name,               
+        if (res.data.success) {
+            const updateItem = {
+                name: data.name,
                 shortDescription: data.shortDescription,
                 longDescription: data.longDescription,
                 image: res.data.data.display_url,
-                maximumAmount:data.maximumAmount,
-                highestAmount:data.highestAmount,
-                dateAndTime: dateTime,
-                email: user.email,
-                progress: progress,
+                maximumAmount: data.maximumAmount,
+                highestAmount: data.highestAmount,              
             }
-            const addPet = await axiosSecure.post('/user/create-donation-campaign', petItem)
-            console.log(addPet.data);
-            if (addPet.data.insertedId) {
-                reset()
+            const myDonationPet = await axiosSecure.patch(`/user/donation-campaign-update/${_id}`, updateItem)
+            console.log(myDonationPet.data);
+            if (myDonationPet.data.modifiedCount>0) {
+               
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -66,7 +60,7 @@ const CreateDonationCampaign = () => {
                                     <span className="text-base pl-1">Name</span>
                                 </label>
                                 <label>
-                                    <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
+                                    <input type="text" defaultValue={name} {...register("name", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
                                 </label>
                             </div>
                             <div className='md:w-1/2 lg:w-1/2'>
@@ -74,7 +68,7 @@ const CreateDonationCampaign = () => {
                                     <span className=" text-base pl-1">Image</span>
                                 </label>
                                 <label>
-                                    <input type="file" {...register("image", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
+                                    <input type="file"  {...register("image", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
                                 </label>
                             </div>
 
@@ -85,7 +79,7 @@ const CreateDonationCampaign = () => {
                                     <span className="text-base pl-1">Maximum Amount</span>
                                 </label>
                                 <label>
-                                    <input type="number" {...register("maximumAmount", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
+                                    <input type="number" defaultValue={maximumAmount} {...register("maximumAmount", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
                                 </label>
                             </div>
                             <div className='md:w-1/2 lg:w-1/2'>
@@ -93,7 +87,7 @@ const CreateDonationCampaign = () => {
                                     <span className=" text-base pl-1">Highest Amount</span>
                                 </label>
                                 <label>
-                                    <input type="number" {...register("highestAmount", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
+                                    <input type="number" defaultValue={highestAmount} {...register("highestAmount", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
                                 </label>
                             </div>
 
@@ -102,13 +96,13 @@ const CreateDonationCampaign = () => {
                             <label >
                                 <span className="text-base pl-1">Short Description</span>
                             </label>
-                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
+                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" defaultValue={shortDescription} {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
                         </div>
                         <div className='w-full'>
                             <label >
                                 <span className="text-base pl-1">Long Description</span>
                             </label>
-                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
+                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" defaultValue={longDescription} {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                         </div>
 
                         <input type="submit" value="Create Donation" className='py-3 mt-4 cursor-pointer w-full border bg-pink text-white text-lg font-semibold' />
@@ -117,6 +111,7 @@ const CreateDonationCampaign = () => {
             </div>
         </div>
     );
-};
+}
 
-export default CreateDonationCampaign;
+
+export default UpdateMyDonationCampaign;

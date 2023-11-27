@@ -16,6 +16,9 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import UpdatePet from "../pages/Dashboard/UserProfile/UpdatePet";
 import PrivateRoute from "./PrivateRoute";
+import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
+import DonationDetails from "../pages/DonationCampaigns/DonationDetails";
+import UpdateMyDonationCampaign from "../pages/Dashboard/UserProfile/UpdateMyDonationCampaign";
 
 
 const Routes = createBrowserRouter([
@@ -30,6 +33,16 @@ const Routes = createBrowserRouter([
             {
                 path: 'petList',
                 element: <PetList></PetList>
+            },
+            {
+                path: 'donationCampaigns',
+                element: <DonationCampaigns></DonationCampaigns>
+            },
+            {
+                path: 'donation-details/:id',
+                element: <DonationDetails></DonationDetails>,
+                loader:({params})=> fetch(`http://localhost:5000/api/v1/user/donation-campaign-details/${params.id}`)
+
             },
             {
                 path: 'category-card/:category',
@@ -78,6 +91,11 @@ const Routes = createBrowserRouter([
             {
                 path: "createDonationCampaign",
                 element: <CreateDonationCampaign></CreateDonationCampaign>
+            },
+            {
+                path: "updateMyDonationCampaign/:id",
+                element: <UpdateMyDonationCampaign></UpdateMyDonationCampaign>,
+                loader:({params})=> fetch(`http://localhost:5000/api/v1/user/donation-campaign-details/${params.id}`)
             },
             {
                 path: "myDonationCampaign",
