@@ -1,39 +1,46 @@
-import { useLoaderData } from "react-router-dom";
-import SectionTitle from "../../components/Ui/SectionTitle/SectionTitle";
+import { NavLink, useLoaderData } from "react-router-dom";
 import Container from "../../components/Ui/Container/Container";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
-// import { useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import DonationSection from "./DonationSection";
+import { BsArrowRightShort } from "react-icons/bs";
+import img from '../../assets/banner-1.jpg'
+
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk)
 
 const DonationDetails = () => {
     const { image, name, ownerEmail } = useLoaderData();
 
-    // const axiosSecure = useAxiosSecure()
-
-    // const {data: moreDonations = []} = useQuery({
-    //     queryKey: ["more-donation-section"],
-    //     queryFn:async()=>{
-    //         const res = await axiosSecure.get(`/user/donation-section/${_id}`)
-    //         return res.data
-    //     }
-    // })
-    // console.log(moreDonations);
-    // console.log(amount);
-
-
     return (
         <div className="mt-24">
-            <SectionTitle subHeading="Donation" heading="Your Money saves Lives"></SectionTitle>
+           <div className="hero h-[350px]" style={{ backgroundImage: `url(${img})` }}>
+                <div className="hero-content text-center text-neutral-content">
+                    <div className="">
+                        <h1 className="mb-8 text-5xl font-bold text-orange ">Payment<span className="text-gray"> Donation</span></h1>
+                        <div className="border-2 border-orange w-24 rounded-lg mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+            <div className="bg-offWhite py-5 flex justify-center items-center mb-16">
+                <NavLink
+                    to="/"
+                    className="hover:text-orange font-medium uppercase"
+                >
+                    Home
+                </NavLink>
+                <BsArrowRightShort className="text-2xl mx-1" />
+                <NavLink
+                    to="/donationCampaigns"
+                    className="hover:text-orange font-medium uppercase"
+                >
+                    Donation Campaigns
+                </NavLink>
+            </div>
             <Container>
-                <div className="flex mb-10 gap-4">
+                <div className="flex mb-10 gap-10">
                     <div className="flex-1">
-                        <img className="w-full h-full" src={image} alt="" />
+                        <img className="w-full h-full rounded-lg" src={image} alt="" />
                     </div>
                     <div className="flex-1 space-y-4">
                         <span><p className="text-5xl font-bold text-violet">Make a Donation and Save Lives</p></span>

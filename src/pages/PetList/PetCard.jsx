@@ -10,18 +10,18 @@ const PetCard = ({ pet }) => {
                 <img className="w-full h-full" src={image} alt="profile-picture" />
             </div>
             <div className="p-6 text-left">
-                <h4 className="block mb-2 text-2xl antialiased font-bold leading-snug tracking-normal text-violet">
+                <h4 className="block mb-2 text-2xl antialiased font-bold leading-snug tracking-normal text-gray uppercase">
                     {name}
                 </h4>
-                <p className="block text-base antialiased font-medium leading-relaxed text-gray-700 bg-clip-text">
+                <p className="block text-base antialiased font-medium leading-relaxed text-gray bg-clip-text">
                     {age}
                 </p>
-                <p className="block text-base antialiased font-medium leading-relaxed text-gray-700 bg-clip-text">
+                <p className="block text-base antialiased font-medium leading-relaxed text-gray bg-clip-text">
                     {location}
                 </p>
             </div>
             <Link to={`/details-pet/${_id}`} className="flex justify-center">
-                <button className="w-full py-4 bg-pink text-white font-bold rounded-b-xl">Details</button>
+                <button className="w-full py-4 bg-orange text-black font-bold rounded-b-xl">Details</button>
             </Link>
         </div>
     );

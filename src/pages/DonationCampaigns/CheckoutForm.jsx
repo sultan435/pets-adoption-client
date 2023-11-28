@@ -75,11 +75,11 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                     transactionId: paymentIntent.id,
                     name: name,
                     image: image,
-                    ownerEmail:ownerEmail,
+                    ownerEmail: ownerEmail,
 
                 }
                 const res = await axiosSecure.post('/users/payments', payment)
-                console.log('payment save', res.data);
+                // console.log('payment save', res.data);
                 if (res.data?.insertedId) {
                     Swal.fire({
                         position: "top-end",
@@ -96,7 +96,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="flex flex-col mb-6">
                 <label>
                     <span className="text-[#403F3F] text-2xl font-semibold">Donation Amount</span>
                 </label>
@@ -104,7 +104,8 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                     type="number"
                     onBlur={(e) => setDonation(e.target.value)}
                     name="amount"
-                    className="border-2 border-gray-400 hover:border-[#f1823d] transition py-2 mt-2 px-2 bg-[#f8f3e8] outline-none"
+                    placeholder="Enter Donatio Amount"
+                    className="border rounded-lg border-gray-400 hover:border-[#f1823d]  transition py-2 mt-2 px-2 bg-[#f8f3e8] outline-none"
                     required />
 
             </div>
@@ -124,7 +125,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                     },
                 }}
             />
-            <button className="py-2 px-3 bg-purple-700 text-white rounded-lg mt-6" type="submit" disabled={!stripe || !clientSecret}>
+            <button className="py-2 px-5 bg-orange text-black font-bold rounded-lg mt-6" type="submit" disabled={!stripe || !clientSecret}>
                 Donation Pay
             </button>
             <p className="text-red-600">{error}</p>

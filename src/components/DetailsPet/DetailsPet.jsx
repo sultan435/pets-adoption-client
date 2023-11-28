@@ -30,27 +30,27 @@ const DetailsPet = () => {
                             <p className="text-[#293255] font-medium">{petDetails.longDescriPtion}</p>
                         </div>
                         <div className="mt-8 mb-4">
-                            <h3 className="font-bold text-violet text-xl">More about {petDetails.name}</h3>
+                            <h3 className="font-bold text-gray text-xl">More about {petDetails.name}</h3>
                         </div>
-                        <div className="grid grid-cols-2 bg-slate-500 py-3 px-4 text-white">
-                            <h4>Age</h4>
-                            <p>{petDetails.age}</p>
-                        </div>
-                        <div className="grid grid-cols-2 py-3 px-4">
+                        <div className="grid grid-cols-2 bg-gray py-3 px-4 text-white">
                             <h4>Weight</h4>
                             <p>42 Pounds</p>
                         </div>
-                        <div className="grid grid-cols-2 bg-slate-500 py-3 text-white px-4">
+                        <div className="grid grid-cols-2 py-3 px-4">
+                            <h4>Age</h4>
+                            <p>{petDetails.age}</p>
+                        </div>
+                        <div className="grid grid-cols-2 bg-gray py-3 text-white px-4">
                             <h4>Location</h4>
                             <p>{petDetails.location}</p>
                         </div>
                         <div className="grid grid-cols-2 py-3 px-4">
-                            <h4>Weight</h4>
-                            <p>42 Pounds</p>
+                            <h4>Adoption Fee</h4>
+                            <p>$420</p>
                         </div>
                         <div className="my-16">
                             <h1 className="mb-5 text-xl font-semibold text-violet">{petDetails.name} Gallery</h1>
-                            <div className="grid grid-cols-2">
+                            <div className="grid grid-cols-1 md:grid-cols-2">
                                 <img className="w-full h-full rounded-xl mb-10" src={petDetails.image} alt="" />
                             </div>
                         </div>

@@ -29,7 +29,7 @@ const AddPet = () => {
             }
         })
 
-        const dateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+        const dateTime = moment().subtract(10, 'days').calendar();
         if (user && user.email && res.data.success) {
             const petItem = {
                 name: data.name,
@@ -40,7 +40,7 @@ const AddPet = () => {
                 longDescription: data.longDescription,
                 image: res.data.data.display_url,
                 adoption: false,
-                dateAndTime: dateTime,
+                dateAndTime:dateTime,
                 email: user.email,
 
 

@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Sidebar = ({ email }) => {
@@ -12,17 +13,28 @@ const Sidebar = ({ email }) => {
         const ownerEmail = event.target.ownerEmail.value;
     
         const date = { name, email, phone, address,ownerEmail }
-        console.log(date);
+        // console.log(date);
        
 
         axiosSecure.post('/user/pet-adoption', date)
-            .then(res => console.log(res.data))
+            .then(res => {
+                if (res.data?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your adopted request successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+            })
     }
     return (
-        <div className="sticky top-28 rounded-xl w-full bg-violet shadow-xl p-8 space-y-2 text-white">
+        <div className="sticky top-28 rounded-xl w-full bg-gray shadow-xl p-8 space-y-2 text-white">
             <h2 className="text-3xl mb-5">Interested in Adopting?</h2>
-            <p className="text-sm pb-6">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-            <button className="w-full py-4 bg-pink text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Adopted</button>
+            <p className="text-sm pb-6">You save a life. All animals at our shelter are in need of a second chance. They have been lost, given up or abandoned. They are all unwanted and helpless.</p>
+            <button className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Adopted</button>
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box text-black">
                     <form onSubmit={handleAdoption}>
@@ -50,7 +62,7 @@ const Sidebar = ({ email }) => {
                         <div className=" w-full hidden">
                         <input className="border px-2 py-2 rounded-lg" type="text" defaultValue={email}  name="ownerEmail" />
                         </div>
-                        <input method="dialog" className=" px-4 py-3 cursor-pointer bg-pink text-white rounded-lg font-medium mt-4 w-full" type="submit" value="Submit" onClick={() => document.getElementById('my_modal_5').close()} />
+                        <input method="dialog" className=" px-4 py-3 cursor-pointer bg-orange text-white rounded-lg font-medium mt-4 w-full" type="submit" value="Submit" onClick={() => document.getElementById('my_modal_5').close()} />
                     </form>
                 </div>
             </dialog>
