@@ -11,8 +11,8 @@ const DashboardLayout = () => {
 
     const [isAdmin] = useAdmin()
     return (
-        <div className="flex">
-            <div className="w-72 min-h-screen bg-[#eb8c51] text-[#333333]  shadow-xl">
+        <div className="flex relative">
+            <div className="w-72 min-h-screen bg-[#eb8c51] text-[#333333]  shadow-xl fixed">
                 <div className="avatar flex items-center justify-center pt-16 mb-8">
                     <div className="w-24 rounded-full">
                         {
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
                     <li><NavLink to="/"><FaUser />Home</NavLink></li>
                 </ul>
             </div>
-            <div className="flex-1 min-h-screen">
+            <div className="flex-1 ml-72 min-h-screen">
                 <Outlet></Outlet>
             </div>
         </div>

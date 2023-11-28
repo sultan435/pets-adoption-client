@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       colors:{
-        'violet': '#112A46',
-        'pink': '#F8467C'
+        'gray': '#333333',
+        'orange': '#f1823d',
+        "offWhite": "#f8f3e8"
       }
     },
   },

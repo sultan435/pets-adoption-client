@@ -9,9 +9,9 @@ const DonationCampaigns = () => {
         <div className="mt-24">
             <Container>
               
-                    <div className="py-16">
+                    <div className="">
                         <SectionTitle subHeading="Donation Campaign" heading="WHAT WE DO TO PROTECT ANIMALS"></SectionTitle>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
                             {
                                 donationsItem.map(item => <DonationCampaignCard key={item._id} donation={item}></DonationCampaignCard>)
                             }

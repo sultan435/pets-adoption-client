@@ -56,9 +56,9 @@ const Register = () => {
     return (
         <div className='bg-[#f8f3e8]'>
             <Container>
-                <div className='mt-24 py-8 flex flex-col md:flex-row '>
+                <div className='mt-24 py-8 flex flex-col lg:flex-row '>
                     <div className='flex-1'>
-                        <img className='w-full h-full' src={img} alt="" />
+                        <img className='w-full h-full hidden lg:block' src={img} alt="" />
                     </div>
                     <div className='flex-1'>
                         <div className="">

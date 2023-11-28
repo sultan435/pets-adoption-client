@@ -33,10 +33,10 @@ const CreateDonationCampaign = () => {
                 shortDescription: data.shortDescription,
                 longDescription: data.longDescription,
                 image: res.data.data.display_url,
-                maximumAmount:data.maximumAmount,
+                maximumAmount:parseInt(data.maximumAmount),
                 highestAmount:data.highestAmount,
                 dateAndTime: dateTime,
-                email: user.email,
+                ownerEmail: user.email,
                 progress: progress,
             }
             const addPet = await axiosSecure.post('/user/create-donation-campaign', petItem)
