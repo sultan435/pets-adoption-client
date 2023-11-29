@@ -29,7 +29,7 @@ const AddPet = () => {
             }
         })
 
-        const dateTime = moment().subtract(10, 'days').calendar();
+        const dateTime = moment().format('DD/MM/YYYY');
         if (user && user.email && res.data.success) {
             const petItem = {
                 name: data.name,

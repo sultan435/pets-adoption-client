@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ email }) => {
     const axiosSecure = useAxiosSecure();
@@ -36,7 +37,9 @@ const Sidebar = ({ email }) => {
         <div className="sticky top-28 rounded-xl w-full bg-gray shadow-xl p-8 space-y-2 text-white">
             <h2 className="text-3xl mb-5">Interested in Adopting?</h2>
             <p className="text-sm pb-6">You save a life. All animals at our shelter are in need of a second chance. They have been lost, given up or abandoned. They are all unwanted and helpless.</p>
-            <button className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Adopted</button>
+            {
+                !user ? <Link to='/login' ><button className="w-full py-4 bg-orange text-black font-bold rounded-xl">Adopted</button></Link> :<button  className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Adopted</button> 
+            }
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box text-black">
                     <form onSubmit={handleAdoption}>

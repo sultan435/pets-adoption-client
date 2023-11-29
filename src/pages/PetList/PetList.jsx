@@ -1,13 +1,22 @@
 import PetCard from "./PetCard";
 import Container from "../../components/Ui/Container/Container";
-import useAllPets from "../../hooks/useAllPets";
 import { NavLink } from "react-router-dom";
 import { BsArrowRightShort } from "react-icons/bs";
 import image from '../../assets/banner-1.jpg'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const PetList = () => {
 
-    const [allPets] = useAllPets()
+    const axiosSecure = useAxiosSecure()
+
+    const {data: allPets = []} = useQuery({
+        queryKey:["allPets-sorting"],
+        queryFn:async()=>{
+            const res = await axiosSecure.get('/users/pets')
+            return res.data
+        }
+    })
 
     return (
         <div className="pt-36">

@@ -1,18 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAllUsers from "../../../hooks/useAllUsers";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-
     const axiosSecure = useAxiosSecure()
 
-    const { data: usersInfo = [] } = useQuery({
-        queryKey: ["user-information"],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/users-info')
-            return res.data;
-        }
-    })
+    const [usersInfo, refetch] =useAllUsers()
 
     const handleMakeAdmin = (user) =>{
         axiosSecure.patch(`/users/admin/${user._id}`)
@@ -26,8 +19,33 @@ const AllUsers = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  refetch()
             }
         })
+    }
+
+    const handleDeleteUser = (user) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/users-info/${user._id}`)
+                if (res.data.deletedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        title: "Deleted!",                       
+                        text: `${user.name}has been deleted.`,
+                        icon: "success"
+                    });
+                }
+            }
+        });
     }
 
     return (
@@ -68,9 +86,9 @@ const AllUsers = () => {
                                             <div className="text-red-600 font-medium">{user.email}</div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td className="text-base font-semibold text-gray">
                                         {
-                                           user.role === "admin" ? <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Admin</button> :  <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">User</button>
+                                           user.role === "admin" ? "ADMIN" : "USER"
                                         }
 
                                     </td>
@@ -81,7 +99,7 @@ const AllUsers = () => {
 
                                     </td>
                                     <th>
-                                        <button className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
+                                        <button onClick={()=> handleDeleteUser(user)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
                                     </th>
                                 </tr>
                                 )
