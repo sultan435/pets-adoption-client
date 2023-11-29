@@ -15,7 +15,7 @@ import Container from '../../../components/Ui/Container/Container';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 const Banner = () => {
   return (
-    <div className='pt-24 pb-10'>
+    <div className='pt-36 pb-10'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -21,7 +21,7 @@ const CategoryCard = () => {
     })
     // console.log(categoryCard);
     return (
-        <div className="mt-20 pb-16">
+        <div className="pt-36 pb-16">
             <div className="hero h-[350px]" style={{ backgroundImage: `url(${image})` }}>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="">

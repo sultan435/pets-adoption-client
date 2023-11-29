@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-import img from '../../../../assets/category/robbit.jpg'
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../../assets/logo.png'
 import Container from "../../../../components/Ui/Container/Container";
@@ -8,6 +7,7 @@ import { AuthContext } from "../../../../provider/AuthProvider";
 import { BsFacebook, BsPinterest } from "react-icons/bs";
 import { AiFillTwitterCircle, AiOutlineInstagram } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
+import userLogo from '../../../../assets/userLogo.png'
 
 
 const Navbar = () => {
@@ -96,7 +96,9 @@ const Navbar = () => {
                         <Link to='/dashboard/userProfile'>
                             <div className="text-gray border-l border-slate-300 flex items-center justify-center gap-1 px-4 py-3">
                                 <span><FaUser></FaUser></span>
-                                <span>MyAA account</span>
+                                {
+                                    user ? user.displayName : <span>MyAA account</span>
+                                }
                             </div>
                         </Link>
                     </div>
@@ -121,7 +123,7 @@ const Navbar = () => {
                             <div className="avatar cursor-pointer">
                                 <div onClick={toggleDashboard} className="w-12 rounded-full">
                                     {
-                                        user ? <img className="w-full mx-auto" src={user?.photoURL} /> : <img className="w-full mx-auto" src={img} />
+                                        user ? <img className="w-full mx-auto" src={user?.photoURL} /> : <img className="w-full mx-auto" src={userLogo} />
                                     }
                                 </div>
                             </div>
@@ -143,7 +145,7 @@ const Navbar = () => {
                     <div className={`space-y-4 px-4 mt-24 md:mt-32 py-7 bg-offWhite shadow-lg ${isMenuOpen ? "block md:flex lg:hidden flex-col fixed top-0 right-0 left-0 list-none transition-all ease-in duration-300" : "hidden"}`}>
                         {navItems}
                     </div>
-                    <div className={`space-y-4 px-4 mt-32 py-7 w-48 bg-offWhite rounded-xl shadow-lg ${isDashboard ? " hidden lg:flex flex-col fixed top-0 right-48 list-none transition-all ease-in duration-300" : "hidden"}`}>
+                    <div className={`space-y-4 px-4 mt-32 py-7 w-48 bg-offWhite rounded-xl shadow-lg ${isDashboard ? " hidden lg:flex flex-col fixed top-0 right-6 list-none transition-all ease-in duration-300" : "hidden"}`}>
                         {navLinks}
                     </div>
                 </nav>

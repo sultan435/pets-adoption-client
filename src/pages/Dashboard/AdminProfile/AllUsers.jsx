@@ -1,8 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { FaUsers } from "react-icons/fa6";
-import { FaTrashAlt } from "react-icons/fa";
-import SectionTitle from "../../../components/Ui/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
@@ -34,22 +31,22 @@ const AllUsers = () => {
     }
 
     return (
-        <div className="pt-10 min-h-screen bg-[#f8f3e8]">
+        <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">
-                <SectionTitle subHeading="admin!" heading="all users"></SectionTitle>
-                <div className="overflow-x-auto rounded-lg">
+            <h1 className='text-5xl text-gray text-center font-bold'>All <span className="text-orange">User</span> List</h1>
+                <div className="overflow-x-auto rounded-lg mt-10">
                     <table className="table" >
                         <thead>
-                            <tr className="bg-[#f1823d] text-[#333333]">
-                                <th className="text-lg py-4">
+                            <tr className="bg-orange text-black">
+                                <th className="text-lg py-7 font-bold">
                                     #
                                 </th>
-                                <th className="text-lg py-4">Image</th>
-                                <th className="text-lg py-4">Name</th>
-                                <th className="text-lg py-4">Email</th>
-                                <th className="text-lg py-4">Role</th>
-                                <th className="text-lg py-4">ACTION</th>
-                                <th className="text-lg py-4">ACTION</th>
+                                <th className="text-lg py-7 font-bold">Image</th>
+                                <th className="text-lg py-7 font-bold">Name</th>
+                                <th className="text-lg py-7 font-bold">Email</th>
+                                <th className="text-lg py-7 font-bold">Role</th>
+                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-7 font-bold">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>                      
@@ -65,28 +62,28 @@ const AllUsers = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="text-[#737373]">
+                                    <td className="text-lg font-bold">
                                         {user.name}
                                     </td>
                                     <td>
                                         <div>
-                                            <div className="text-[#737373]">{user.email}</div>
+                                            <div className="text-red-600 font-medium">{user.email}</div>
                                         </div>
                                     </td>
                                     <td>
                                         {
-                                           user.role === "admin" ? "admin" :  <button className="btn bg-[#D1A054]">User<FaUsers className="text-white"></FaUsers></button>
+                                           user.role === "admin" ? <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Admin</button> :  <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">User</button>
                                         }
 
                                     </td>
                                     <td>
                                         {
-                                            <button onClick={()=> handleMakeAdmin(user)} className="btn bg-[#D1A054]">Admin</button>
+                                            <button onClick={()=> handleMakeAdmin(user)} className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Admin</button>
                                         }
 
                                     </td>
                                     <th>
-                                        <button className="btn bg-red-700"><FaTrashAlt className="text-white"></FaTrashAlt></button>
+                                        <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">Delete</button>
                                     </th>
                                 </tr>
                                 )

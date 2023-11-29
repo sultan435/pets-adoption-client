@@ -10,8 +10,8 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
-    const { register, handleSubmit } = useForm()
-    const { loggedUser,googleUser } = useAuth();
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { loggedUser, googleUser } = useAuth();
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -24,33 +24,33 @@ const Login = () => {
         loggedUser(data.email, data.password)
             .then(result => {
                 console.log('user login successfully', result.user)
-                navigate(from, {replace: true})
+                navigate(from, { replace: true })
             })
     }
 
-    const handleGoogleLogin = (googleProvider) =>{
+    const handleGoogleLogin = (googleProvider) => {
         googleUser(googleProvider)
-        .then((result)=> {
-            console.log(result.user);
-            const user ={
-                email:result.user.email,
-                name:result.user.displayName,
-                image:result.user.photoURL,
-            }
-            axiosPublic.post('/users-info', user)
-                    .then(res =>{
-                        if(res.data.insertedId || res.data.insertedId=== null){
+            .then((result) => {
+                console.log(result.user);
+                const user = {
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    image: result.user.photoURL,
+                }
+                axiosPublic.post('/users-info', user)
+                    .then(res => {
+                        if (res.data.insertedId || res.data.insertedId === null) {
                             console.log('user added to the database');
                             navigate('/')
                         }
                     })
-            
-        })
+
+            })
     }
     return (
-        <div className='bg-[#f8f3e8]'>
+        <div className='bg-[#f8f3e8] pt-36'>
             <Container>
-                <div className='mt-24 py-8 flex flex-col lg:flex-row '>
+                <div className=' py-16 flex flex-col lg:flex-row '>
                     <div className='flex-1'>
                         <img className='w-full h-full hidden lg:block' src={img1} alt="" />
                     </div>
@@ -58,30 +58,40 @@ const Login = () => {
                         <div className="">
                             <div className="w-full px-4 md:px-16 mb-10">
                                 <div className="text-center mb-12">
-                                    <h1 className="text-4xl text-[#403F3F] font-semibold">Login</h1>
+                                    <h1 className="text-4xl text-gray font-semibold">Login</h1>
                                 </div>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mt-6">
                                         <div className="mb-4">
                                             <label>
-                                                <span className="text-[#403F3F] font-semibold">Email address*</span>
+                                                <span className="text-gray font-semibold">Email address*</span>
                                             </label>
                                             <input
                                                 type="email"
                                                 {...register("email", { required: true })}
-                                                className="border-b border-gray-400 hover:border-[#f1823d] hover:border-b-2 transition py-2 w-full bg-[#f8f3e8] outline-none"
-                                                required />
+                                                className="border-b border-slate-600 hover:border-orange hover:border-b-2 transition py-2 w-full bg-offWhite outline-none"
+                                            />
+                                            {errors.email && <span className='text-red-500'>Email is required</span>}
                                         </div>
                                         <div className="mb-4">
                                             <label >
-                                                <span className="text-[#403F3F] font-semibold">Password*</span>
+                                                <span className="text-gray font-semibold">Password*</span>
                                             </label>
                                             <div className="relative">
                                                 <input
                                                     type={showPassword ? "text" : "password"}
-                                                    {...register("password", { required: true })}
-                                                    className="border-b border-gray-400 hover:border-[#f1823d] hover:border-b-2 transition py-2 w-full bg-[#f8f3e8] outline-none"
-                                                    required />
+                                                    {...register("password", {
+                                                        required: true,
+                                                        minLength: 6,
+                                                        maxLength: 20,
+                                                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                                                    })}
+                                                    className="border-b border-slate-600 hover:border-orange hover:border-b-2 transition py-2 w-full bg-offWhite outline-none"
+                                                />
+                                                {errors.password?.type === 'required' && <span className='text-red-500'>Password is required</span>}
+                                                {errors.password?.type === 'minLength' && <span className='text-red-500'>Password is 6 less then </span>}
+                                                {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password is less then 20 character</span>}
+                                                {errors.password?.type === 'pattern' && <span className='text-red-500'>Password must have one uppercase, one lower case, one number and one special character</span>}
                                                 <span className="absolute top-3 right-7" onClick={() => setShowPassword(!showPassword)}>
                                                     {
                                                         showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
@@ -90,18 +100,18 @@ const Login = () => {
                                             </div>
                                         </div>
                                         <div className="form-control">
-                                            <input type="submit" className=" text-[#333333] text-xl cursor-pointer font-medium bg-[#f1823d] py-3 px-6" value="Login" />
+                                            <input type="submit" className=" text-black text-xl cursor-pointer font-medium bg-orange py-3 px-6" value="Login" />
                                         </div>
                                     </div>
                                 </form>
                                 <p className="text-center">OR</p>
                                 <div className="">
-                                    <button onClick={handleGoogleLogin} className="btn w-full hover:bg-[#ff3115] hover:text-white font-medium border-black my-3">
+                                    <button onClick={handleGoogleLogin} className="btn w-full hover:bg-orange hover:text-black font-medium border-slate-600 my-3">
                                         <FaGoogle></FaGoogle>
                                         Sign in with Google
                                     </button>
                                 </div>
-                                <p className='mt-7'>Don’t have a My Animals Australia account yet? <Link to="/register" className="font-semibold border-b-2 px-1 border-[#f1823d] text-[#333333] cursor-pointer  hover:bg-[#f6c09e]" >Register here.</Link></p>
+                                <p className='mt-7'>Don’t have a My Animals Australia account yet? <Link to="/register" className="font-semibold border-b-2 px-1 border-orange text-black cursor-pointer  hover:bg-[#f6c09e]" >Register here.</Link></p>
                             </div>
                         </div>
                     </div>

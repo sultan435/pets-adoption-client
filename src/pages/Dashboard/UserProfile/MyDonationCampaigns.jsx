@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import SectionTitle from "../../../components/Ui/SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const MyDonationCampaigns = () => {
@@ -17,26 +15,26 @@ const MyDonationCampaigns = () => {
             return res.data
         }
     })
-    console.log(MyDonationCampaigns);
+    // console.log(MyDonationCampaigns);
 
 
 
     return (
-        <div className="pt-10 min-h-screen bg-[#f8f3e8]">
+        <div className="py-16  min-h-screen bg-offWhite">
             <div className="px-8">
-                <SectionTitle subHeading="Hurry Up!" heading="MANAGE ALL ITEMS"></SectionTitle>
-                <div className="overflow-x-auto rounded-lg">
-                    <table className="table">                    
+                <h1 className='text-5xl text-gray text-center font-bold'>My <span className="text-orange">Donation</span> Campaign</h1>
+                <div className="overflow-x-auto rounded-lg mt-10">
+                    <table className="table">
                         <thead>
-                            <tr className="bg-[#f1823d] text-[#333333]">
-                                <th className="text-lg py-4">
+                            <tr className="bg-orange text-black">
+                                <th className="text-lg py-7 font-bold">
                                     #
                                 </th>
-                                <th className="text-lg py-4">Image</th>
-                                <th className="text-lg py-4">Maximum Donation</th>
-                                <th className="text-lg py-4">Progress Bar</th>
-                                <th className="text-lg py-4">Action</th>
-                                <th className="text-lg py-4">Action</th>
+                                <th className="text-lg py-7 font-bold">Image</th>
+                                <th className="text-lg py-7 font-bold">Maximum Donation</th>
+                                <th className="text-lg py-7 font-bold">Progress Bar</th>
+                                <th className="text-lg py-7 font-bold">Action</th>
+                                <th className="text-lg py-7 font-bold">Action</th>
 
 
                             </tr>
@@ -55,37 +53,37 @@ const MyDonationCampaigns = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="text-sm font-bold opacity-90">{item.name}</div>
+                                                <div className="text-lg font-bold">{item.name}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="">
 
-                                       <span className="text-xl">$</span>{item.maximumAmount}
+                                        <p className="text-xl font-semibold"><span className="text-2xl text-gray">$</span>{item.maximumAmount}</p>
                                     </td>
                                     <td>
-                                    <ProgressBar completed= {item.progress} maxCompleted={100} />
-                                       
+                                        <ProgressBar completed={item.progress} maxCompleted={100} />
+
 
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
-                                            <div className="flex items-center justify-center gap-2 bg-gray-600 text-white py-2 rounded-md">
-                                                <span><FaEdit /></span>
-                                                <button className="">Update</button>
-                                            </div>
+
+
+                                            <button className="bg-orange text-lg py-4 px-6 rounded-lg text-black font-semibold">Update</button>
+
                                         </Link>
 
                                     </td>
                                     <td>
                                         <Link >
-                                            <div className="bg-gray-600 text-white text-center py-2 rounded-md">
-                                                
-                                                <button className="">Pause</button>
-                                            </div>
+
+
+                                            <button className="bg-gray text-lg py-4 px-6 rounded-lg text-white font-semibold">Pause</button>
+
                                         </Link>
                                     </td>
-                                   
+
 
                                 </tr>
                                 )

@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
-import SectionTitle from "../../../components/Ui/SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { Link } from "react-router-dom";
@@ -52,23 +50,22 @@ const MyAddPets = () => {
 
 
     return (
-        <div className="pt-10 min-h-screen bg-[#f8f3e8]">
+        <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">
-                <SectionTitle subHeading="Hurry Up!" heading="MANAGE ALL ITEMS"></SectionTitle>
-                <div className="overflow-x-auto rounded-lg">
+                <h1 className='text-5xl text-gray text-center font-bold'>My <span className="text-orange">Pet</span> List</h1>
+                <div className="overflow-x-auto rounded-lg mt-10">
                     <table className="table">
-                        {/* head */}
                         <thead>
-                            <tr className="bg-[#f1823d] text-[#333333]">
-                                <th className="text-lg py-4">
+                            <tr className="bg-orange text-black">
+                                <th className="text-lg py-7 font-bold">
                                     #
                                 </th>
-                                <th className="text-lg py-4">Image</th>
-                                <th className="text-lg py-4">Category</th>
-                                <th className="text-lg py-4">Status</th>
-                                <th className="text-lg py-4">Action</th>
-                                <th className="text-lg py-4">Action</th>
-                                <th className="text-lg py-4">Action</th>
+                                <th className="text-lg py-7 font-bold">Image</th>
+                                <th className="text-lg py-7 font-bold">Category</th>
+                                <th className="text-lg py-7 font-bold">Status</th>
+                                <th className="text-lg py-7 font-bold">Action</th>
+                                <th className="text-lg py-7 font-bold">Action</th>
+                                <th className="text-lg py-7 font-bold">Action</th>
 
                             </tr>
                         </thead>
@@ -86,40 +83,32 @@ const MyAddPets = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="text-sm font-bold opacity-90">{item.name}</div>
+                                                <div className="text-lg font-bold">{item.name}</div>
                                                 <div className="text-sm font-bold opacity-70">{item.age}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="">
+                                    <td className="text-lg font-bold text-gray">
 
                                         {item.category}
                                     </td>
-                                    <td>
+                                    <td className="text-gray font-medium">
                                         {item.adoption === true ? "Adoption" : "Not Adoption"}
 
                                     </td>
                                     <td>
                                         <Link >
-                                            <div className="flex items-center gap-2 bg-pink py-2 pl-3 rounded-md">
-                                                <span><FaEdit /></span>
-                                                <button className="">Adopted</button>
-                                            </div>
+                                            <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Adopted</button>
                                         </Link>
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updatePetItem/${item._id}`}>
-                                            <div className="flex items-center gap-2 bg-pink py-2 pl-3 rounded-md">
-                                                <span><FaEdit /></span>
-                                                <button className="">Update</button>
-                                            </div>
+                                            <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Update</button>
                                         </Link>
-
                                     </td>
                                     <td>
-                                        <div onClick={() => handleDelete(item._id)} className="flex items-center gap-2 bg-pink py-2 pl-3 rounded-md">
-                                            <span><FaTrashAlt /></span>
-                                            <button className="">Delete</button>
+                                        <div onClick={() => handleDelete(item._id)} className=" ">
+                                            <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Delete</button>
                                         </div>
                                     </td>
                                 </tr>

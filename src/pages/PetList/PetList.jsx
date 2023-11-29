@@ -10,7 +10,7 @@ const PetList = () => {
     const [allPets] = useAllPets()
 
     return (
-        <div className="pt-20">
+        <div className="pt-36">
             <div className="hero h-[350px]" style={{ backgroundImage: `url(${image})` }}>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="">

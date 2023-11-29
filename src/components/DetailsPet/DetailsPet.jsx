@@ -18,7 +18,7 @@ const DetailsPet = () => {
     })
     console.log(petDetails)
     return (
-        <div className="mt-20">
+        <div className="mt-36">
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-28 p-10">
                     <div className="col-span-3">

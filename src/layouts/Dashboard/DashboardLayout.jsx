@@ -1,18 +1,33 @@
-import { FaUser } from "react-icons/fa6";
+import {  FaUser } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlinePets } from "react-icons/md";
 import img from '../../assets/category/robbit.jpg'
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
+// import { useState } from "react";
 
 
 const DashboardLayout = () => {
     const { user } = useAuth()
+    // const [isDashboard, setIsDashboard] = useState(false)
+
+    // const toggleDashboard = () => {
+    //     setIsDashboard(!isDashboard)
+    // }
 
     const [isAdmin] = useAdmin()
     return (
         <div className="flex relative">
-            <div className="w-72 min-h-screen bg-[#eb8c51] text-[#333333]  shadow-xl fixed">
+            {/* <div className="lg:hidden focus:outline-none transition-all ease-in duration-300">
+                <button
+                    className="text-black"
+                    onClick={toggleDashboard}>
+                    {
+                        isDashboard ? <FaXmark className="w-6 h-6"></FaXmark> : <FaBarsStaggered className="w-6 h-6"></FaBarsStaggered>
+                    }
+                </button>
+            </div> */}
+            <div className="w-96 min-h-screen bg-orange text-gray  shadow-xl fixed">
                 <div className="avatar flex items-center justify-center pt-16 mb-8">
                     <div className="w-24 rounded-full">
                         {
@@ -20,7 +35,7 @@ const DashboardLayout = () => {
                         }
                     </div>
                 </div>
-                <ul className="menu p-4 space-y-1">
+                <ul className="menu p-4 space-y-1 font-semibold text-lg">
                     {
                         isAdmin ? <>
                             <li>
@@ -61,18 +76,12 @@ const DashboardLayout = () => {
                                 </li>
                             </>
                     }
-
-
-
-
-
-
-
                     <div className="divider"></div>
                     <li><NavLink to="/"><FaUser />Home</NavLink></li>
                 </ul>
             </div>
-            <div className="flex-1 ml-72 min-h-screen">
+
+            <div className="flex-1 ml-96 min-h-screen">
                 <Outlet></Outlet>
             </div>
         </div>

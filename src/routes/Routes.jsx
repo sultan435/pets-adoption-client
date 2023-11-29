@@ -23,6 +23,7 @@ import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
 import AllUsers from "../pages/Dashboard/AdminProfile/AllUsers";
 import AllPets from "../pages/Dashboard/AdminProfile/AllPets";
 import AllDonations from "../pages/Dashboard/AdminProfile/AllDonations";
+import AdminRoute from "./AdminRoute";
 
 
 const Routes = createBrowserRouter([
@@ -45,7 +46,7 @@ const Routes = createBrowserRouter([
             {
                 path: 'donation-details/:id',
                 element: <DonationDetails></DonationDetails>,
-                loader:({params})=> fetch(`http://localhost:5000/api/v1/user/donation-campaign-details/${params.id}`)
+                loader:({params})=> fetch(`https://pet-adoption-server-side.vercel.app/api/v1/user/donation-campaign-details/${params.id}`)
 
             },
             {
@@ -73,59 +74,59 @@ const Routes = createBrowserRouter([
             //admin dashboard
             {
                 path:"adminProfile",
-                element:<AdminProfile></AdminProfile>
+                element:<AdminRoute><AdminProfile></AdminProfile></AdminRoute>
             },
             {
                 path:"allUsers",
-                element:<AllUsers></AllUsers>
+                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path:"user-allPets",
-                element:<AllPets></AllPets>
+                element:<AdminRoute><AllPets></AllPets></AdminRoute>
             },
             {
                 path:"user-allDonations",
-                element: <AllDonations></AllDonations>
+                element: <AdminRoute><AllDonations></AllDonations></AdminRoute>
             },
 
             //user dashboard
             {
                 path: "userProfile",
-                element: <UserProfile></UserProfile>
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
             {
                 path: "addPet",
-                element: <AddPet></AddPet>
+                element: <PrivateRoute><AddPet></AddPet></PrivateRoute>
             },
             {
                 path: "myAddPets",
-                element: <MyAddPets></MyAddPets>
+                element: <PrivateRoute><MyAddPets></MyAddPets></PrivateRoute>
             },
             {
                 path: 'updatePetItem/:id',
-                element:<UpdatePet></UpdatePet>,
-                loader:({params})=>fetch(`http://localhost:5000/api/v1/pets-details/${params.id}`)
+                element:<PrivateRoute><UpdatePet></UpdatePet></PrivateRoute>,
+                loader:({params})=>fetch(`https://pet-adoption-server-side.vercel.app/api/v1/pets-details/${params.id}`)
             },
             {
                 path: "adoptionRequest",
-                element: <AdoptionRequest></AdoptionRequest>
+                element: <PrivateRoute><AdoptionRequest></AdoptionRequest></PrivateRoute>
             },
             {
                 path: "createDonationCampaign",
-                element: <CreateDonationCampaign></CreateDonationCampaign>
+                element: <PrivateRoute><CreateDonationCampaign></CreateDonationCampaign></PrivateRoute>
             },
             {
                 path: "updateMyDonationCampaign/:id",
-                element: <UpdateMyDonationCampaign></UpdateMyDonationCampaign>,
-                loader:({params})=> fetch(`http://localhost:5000/api/v1/user/donation-campaign-details/${params.id}`)
+                element: <PrivateRoute><UpdateMyDonationCampaign></UpdateMyDonationCampaign></PrivateRoute>,
+                loader:({params})=> fetch(`https://pet-adoption-server-side.vercel.app/api/v1/user/donation-campaign-details/${params.id}`)
             },
             {
                 path: "myDonationCampaign",
-                element: <MyDonationCampaigns></MyDonationCampaigns>
+                element: <PrivateRoute><MyDonationCampaigns></MyDonationCampaigns></PrivateRoute>
             },
             {
                 path: "myDonations",
-                element: <MyDonation></MyDonation>
+                element: <PrivateRoute><MyDonation></MyDonation></PrivateRoute>
             },
         ]
     }

@@ -1,5 +1,3 @@
-import { FaTrashAlt } from "react-icons/fa";
-import SectionTitle from "../../../components/Ui/SectionTitle/SectionTitle";
 import useAllDonationCampaigns from "../../../hooks/useAllDonationCampaigns";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -34,21 +32,21 @@ const AllDonations = () => {
     }
     return (
         <div>
-            <div className="pt-10 min-h-screen bg-[#f8f3e8]">
+            <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">
-                <SectionTitle subHeading="admin!" heading="all users"></SectionTitle>
-                <div className="overflow-x-auto rounded-lg">
+            <h1 className='text-5xl text-gray text-center font-bold'>All User <span className="text-orange">Donation</span> Campaign</h1>
+                <div className="overflow-x-auto rounded-lg mt-10">
                     <table className="table" >
                         <thead>
-                            <tr className="bg-[#f1823d] text-[#333333]">
-                                <th className="text-lg py-4">
+                            <tr className="bg-orange text-black">
+                                <th className="text-lg py-7 font-bold">
                                     #
                                 </th>
-                                <th className="text-lg py-4">Image</th>
-                                <th className="text-lg py-4">Maximum Amount</th>                                                   
-                                <th className="text-lg py-4">ACTION</th>
-                                <th className="text-lg py-4">ACTION</th>
-                                <th className="text-lg py-4">ACTION</th>
+                                <th className="text-lg py-7 font-bold">Image</th>
+                                <th className="text-lg py-7 font-bold">Maximum Amount</th>                                                   
+                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-7 font-bold">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>                      
@@ -63,30 +61,30 @@ const AllDonations = () => {
                                                 <img src={item.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                             <div className="">
-                                                <p className="text-lg font-semibold">{item.name}</p>                                           
+                                                <p className="text-lg font-bold">{item.name}</p>                                           
                                             </div>
                                         </div>
                                     </td>
                                     <td className="text-lg font-semibold">
-                                        {item.maximumAmount}
+                                    <p className="text-xl font-semibold"><span className="text-2xl text-gray">$</span>{item.maximumAmount}</p>
                                     </td>
                                     
                                     
                                     <td>
                                         {
-                                            <button  className="btn bg-[#D1A054]">Paused</button>
+                                            <button  className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Paused</button>
                                         }
 
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
-                                            <button  className="btn bg-[#D1A054]">Update</button>
+                                            <button  className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Update</button>
                                         </Link>
                                         
 
                                     </td>
                                     <th>
-                                        <button onClick={()=>handleDelete(item._id)} className="btn bg-red-700">Delete<FaTrashAlt className="text-white"></FaTrashAlt></button>
+                                        <button onClick={()=>handleDelete(item._id)} className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Delete</button>
                                     </th>
                                 </tr>
                                 )

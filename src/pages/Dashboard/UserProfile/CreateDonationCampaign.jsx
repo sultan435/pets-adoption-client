@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const CreateDonationCampaign = () => {
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset,formState: { errors } } = useForm()
 
     const axiosPublicHook = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
@@ -46,7 +46,7 @@ const CreateDonationCampaign = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `${data.name} is added to the menu item`,
+                    title: `${data.name} is added to the Donation Campaign item`,
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -56,62 +56,64 @@ const CreateDonationCampaign = () => {
     }
     return (
         <div>
-            <div className="bg-[#f8f3e8] min-h-screen">
-                <div className=' py-10 px-4 lg:px-28 max-w-screen-xl mx-auto '>
-                    <h1 className='text-5xl text-[#374151] mb-8 text-center font-semibold'>Create Donation<span className="text-pink">Campaign</span></h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className='mt-10'>
+            <div className="bg-offWhite min-h-screen">
+                <div className='pt-16 px-4 lg:px-28 max-w-screen-xl mx-auto '>
+                    <h1 className='text-5xl text-[#374151] text-center font-semibold'>Create Donation<span className="text-orange"> Campaign</span></h1>
+                    <form onSubmit={handleSubmit(onSubmit)} className='shadow-xl p-10 rounded-xl'>
                         <div className='lg:flex md:flex gap-6'>
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
-                                    <span className="text-base pl-1">Name</span>
+                                    <span className="text-base pl-1 text-gray font-medium">Name</span>
                                 </label>
-                                <label>
-                                    <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
-                                </label>
+                               
+                                    <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                    {errors.name && <span className='text-red-500'>Name is required</span>}
                             </div>
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
-                                    <span className=" text-base pl-1">Image</span>
+                                    <span className="text-base pl-1 text-gray font-medium">Image</span>
                                 </label>
-                                <label>
-                                    <input type="file" {...register("image", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
-                                </label>
+                               
+                                    <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                    {errors.image && <span className='text-red-500'>Image is required</span>}
                             </div>
 
                         </div>
                         <div className='lg:flex md:flex gap-6'>
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
-                                    <span className="text-base pl-1">Maximum Amount</span>
+                                    <span className="text-base pl-1 text-gray font-medium">Maximum Amount</span>
                                 </label>
-                                <label>
-                                    <input type="number" {...register("maximumAmount", { required: true })} placeholder="Enter Name" className="border py-3 px-4 bg-white my-2 w-full outline-none" />
-                                </label>
+                                
+                                    <input type="number" {...register("maximumAmount", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                    {errors.maximumAmount && <span className='text-red-500'>MaximumAmount is required</span>}
                             </div>
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
-                                    <span className=" text-base pl-1">Highest Amount</span>
+                                    <span className="text-base pl-1 text-gray font-medium">Highest Amount</span>
                                 </label>
-                                <label>
-                                    <input type="number" {...register("highestAmount", { required: true })} className="border py-3 px-4 bg-white my-2 w-full outline-none" />
-                                </label>
+                                
+                                    <input type="number" {...register("highestAmount", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                    {errors.highestAmount && <span className='text-red-500'>HighestAmount is required</span>}
                             </div>
 
                         </div>
                         <div className='w-full'>
                             <label >
-                                <span className="text-base pl-1">Short Description</span>
+                                <span className="text-base pl-1 text-gray font-medium">Short Description</span>
                             </label>
-                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
+                            <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" placeholder="Enter Short Description" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
+                            {errors.shortDescription && <span className='text-red-500'>ShortDescription is required</span>}
                         </div>
                         <div className='w-full'>
                             <label >
-                                <span className="text-base pl-1">Long Description</span>
+                                <span className="text-base pl-1 text-gray font-medium">Long Description</span>
                             </label>
-                            <textarea className="w-full border py-3 px-4 bg-white my-2 outline-none" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
+                            <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" placeholder="Enter Long Description" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
+                            {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>}
                         </div>
 
-                        <input type="submit" value="Create Donation" className='py-3 mt-4 cursor-pointer w-full border bg-pink text-white text-lg font-semibold' />
+                        <input type="submit" value="Create Donation" className='py-4 mt-4 cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>
             </div>

@@ -84,7 +84,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "Donation Payment has been successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });

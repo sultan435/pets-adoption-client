@@ -13,7 +13,7 @@ const DonationDetails = () => {
     const { image, name, ownerEmail } = useLoaderData();
 
     return (
-        <div className="mt-24">
+        <div className="pt-36">
            <div className="hero h-[350px]" style={{ backgroundImage: `url(${img})` }}>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="">
@@ -38,7 +38,7 @@ const DonationDetails = () => {
                 </NavLink>
             </div>
             <Container>
-                <div className="flex mb-10 gap-10">
+                <div className="flex mb-16 gap-10">
                     <div className="flex-1">
                         <img className="w-full h-full rounded-lg" src={image} alt="" />
                     </div>

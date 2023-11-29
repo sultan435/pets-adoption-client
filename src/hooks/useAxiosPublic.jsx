@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/api/v1'
+    baseURL: 'https://pet-adoption-server-side.vercel.app/api/v1'
 })
 const useAxiosPublic = () => {
     return axiosSecure;

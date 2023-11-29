@@ -1,8 +1,10 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = ({ email }) => {
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth()
 
     const handleAdoption = async (event) => {
         event.preventDefault();
@@ -12,11 +14,11 @@ const Sidebar = ({ email }) => {
         const address = event.target.address.value;
         const ownerEmail = event.target.ownerEmail.value;
     
-        const date = { name, email, phone, address,ownerEmail }
+        const adopted = { name, email, phone, address,ownerEmail }
         // console.log(date);
        
 
-        axiosSecure.post('/user/pet-adoption', date)
+        axiosSecure.post('/user/pet-adoption', adopted)
             .then(res => {
                 if (res.data?.insertedId) {
                     Swal.fire({
@@ -40,12 +42,12 @@ const Sidebar = ({ email }) => {
                     <form onSubmit={handleAdoption}>
                         <div className="flex items-center gap-4 mb-2">
                             <div className="flex flex-col w-full">
-                                <label htmlFor="" className="text-gray-700 font-medium mb-2 pl-1">Name</label>
-                                <input className="border px-2 py-2 rounded-lg" type="text" placeholder="Enter Name" name="name" />
+                                <label htmlFor=""  className="text-gray-700 font-medium mb-2 pl-1">Name</label>
+                                <input defaultValue={user?.displayName} disabled className="border px-2 py-2 rounded-lg" type="text" placeholder="Enter Name" name="name" />
                             </div>
                             <div className="flex flex-col w-full">
                                 <label htmlFor="" className="text-gray-700 font-medium mb-2 pl-1">Email</label>
-                                <input className="border px-2 py-2 rounded-lg" type="email" placeholder="Enter Email" name="email" />
+                                <input defaultValue={user?.email} disabled className="border px-2 py-2 rounded-lg" type="email" placeholder="Enter Email" name="email" />
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
