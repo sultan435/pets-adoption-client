@@ -1,9 +1,9 @@
-import {  FaUser } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlinePets } from "react-icons/md";
 import img from '../../assets/category/robbit.jpg'
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
+import { FaBook,  FaEnvelope, FaHome, FaList, FaSearch, FaUsers,FaAddressBook } from 'react-icons/fa';
 // import { useState } from "react";
 
 
@@ -18,70 +18,67 @@ const DashboardLayout = () => {
     const [isAdmin] = useAdmin()
     return (
         <div className="flex relative">
-            {/* <div className="lg:hidden focus:outline-none transition-all ease-in duration-300">
-                <button
-                    className="text-black"
-                    onClick={toggleDashboard}>
-                    {
-                        isDashboard ? <FaXmark className="w-6 h-6"></FaXmark> : <FaBarsStaggered className="w-6 h-6"></FaBarsStaggered>
-                    }
-                </button>
-            </div> */}
-            <div className="w-96 min-h-screen bg-orange text-gray  shadow-xl fixed">
-                <div className="avatar flex items-center justify-center pt-16 mb-8">
+            <div className="w-64 min-h-screen bg-orange text-gray  shadow-xl fixed z-10">
+                <div className="avatar flex items-center justify-center pt-16 mb-5">
                     <div className="w-24 rounded-full">
                         {
                             user ? <img src={user.photoURL} /> : <img src={img} />
                         }
                     </div>
                 </div>
-                <ul className="menu p-4 space-y-1 font-semibold text-lg">
+                <ul className="menu p-2 space-y-1 font-semibold">
                     {
                         isAdmin ? <>
                             <li>
-                                <NavLink to="/dashboard/adminProfile">Admin Profile</NavLink>
+                                <NavLink to="/dashboard/adminProfile"><FaHome/>Admin Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/allUsers">All Users</NavLink>
+                                <NavLink to="/dashboard/allUsers"><FaUsers />All Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/user-allPets">All Pets</NavLink>
+                                <NavLink to="/dashboard/user-allPets"><FaList />All Pets</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/user-allDonations">All Donations</NavLink>
+                                <NavLink to="/dashboard/user-allDonations"><FaBook />All Donations</NavLink>
                             </li>
                         </>
                             :
                             <>
                                 <li>
-                                    <NavLink to="/dashboard/userProfile"><FaUser />User Profile</NavLink>
+                                    <NavLink to="/dashboard/userProfile"><FaHome/>User Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/addPet"><MdOutlinePets />Add a pet</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/myAddPets"><FaUser />My added pets</NavLink>
+                                    <NavLink to="/dashboard/myAddPets"><FaList />My added pets</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/adoptionRequest"><MdOutlinePets />Adoption Request</NavLink>
+                                    <NavLink to="/dashboard/adoptionRequest"><FaBook />Adoption Request</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/createDonationCampaign"><FaUser />Create Donation Campaign</NavLink>
+                                    <NavLink to="/dashboard/createDonationCampaign"><MdOutlinePets />Create Donation Campaign</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/myDonationCampaign"><MdOutlinePets />My Donation Campaigns</NavLink>
+                                    <NavLink to="/dashboard/myDonationCampaign"><FaList />My Donation Campaigns</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/myDonations"><MdOutlinePets />My Donations</NavLink>
+                                    <NavLink to="/dashboard/myDonations"><FaAddressBook/> My Donations</NavLink>
                                 </li>
                             </>
                     }
                     <div className="divider"></div>
-                    <li><NavLink to="/"><FaUser />Home</NavLink></li>
+                    <li><NavLink to="/"><FaHome/>Home</NavLink></li>
+                    <li >
+                        <NavLink to="/petList"><FaSearch></FaSearch> All Pets List</NavLink>
+                    </li>
+                    <li >
+                        <NavLink to="/"><FaEnvelope /> Contact</NavLink>
+                    </li>
                 </ul>
             </div>
 
-            <div className="flex-1 ml-96 min-h-screen">
+            <div className="flex-1 ml-64 min-h-screen">
                 <Outlet></Outlet>
             </div>
         </div>

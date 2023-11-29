@@ -1,23 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { Link } from "react-router-dom";
+import useMyAddedPets from "../../../hooks/useMyAddedPets";
 
 const MyAddPets = () => {
-
+    const [myPets, refetch] = useMyAddedPets()
     const axiosSecure = useAxiosSecure()
-    const { user } = useAuth()
-
-    const { data: myPets = [], refetch } = useQuery({
-        queryKey: ["my-add-pets", user],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/user/pets?email=${user.email}`)
-            return res.data
-        }
-    })
-
+    
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -40,14 +29,9 @@ const MyAddPets = () => {
                         icon: "success"
                     });
                 }
-
-
-
             }
         });
     }
-
-
 
     return (
         <div className="py-16 min-h-screen bg-offWhite">
@@ -57,15 +41,13 @@ const MyAddPets = () => {
                     <table className="table">
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
-                                    #
-                                </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Category</th>
-                                <th className="text-lg py-7 font-bold">Status</th>
-                                <th className="text-lg py-7 font-bold">Action</th>
-                                <th className="text-lg py-7 font-bold">Action</th>
-                                <th className="text-lg py-7 font-bold">Action</th>
+                                <th className="text-lg py-5 font-bold">#</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Category</th>
+                                <th className="text-lg py-5 font-bold">Status</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
 
                             </tr>
                         </thead>
@@ -83,12 +65,12 @@ const MyAddPets = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="text-lg font-bold">{item.name}</div>
+                                                <div className="text-base font-bold">{item.name}</div>
                                                 <div className="text-sm font-bold opacity-70">{item.age}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="text-lg font-bold text-gray">
+                                    <td className="text-base font-bold text-gray">
 
                                         {item.category}
                                     </td>
@@ -98,17 +80,17 @@ const MyAddPets = () => {
                                     </td>
                                     <td>
                                         <Link >
-                                            <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Adopted</button>
+                                            <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Adopted</button>
                                         </Link>
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updatePetItem/${item._id}`}>
-                                            <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Update</button>
+                                            <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Update</button>
                                         </Link>
                                     </td>
                                     <td>
                                         <div onClick={() => handleDelete(item._id)} className=" ">
-                                            <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Delete</button>
+                                            <button className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
                                         </div>
                                     </td>
                                 </tr>

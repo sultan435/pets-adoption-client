@@ -63,7 +63,7 @@ const AddPet = () => {
     return (
         <div className="bg-offWhite min-h-screen">
             <div className='pt-16 px-4 lg:px-28 max-w-screen-xl mx-auto '>
-                <h1 className='text-5xl text-gray text-center font-bold'>Add New <span className="text-orange">Pet</span></h1>
+                <h1 className='text-4xl text-gray text-center font-bold'>Add New <span className="text-orange">Pet</span></h1>
                 <form onSubmit={handleSubmit(onSubmit)} className=' shadow-xl p-10 rounded-xl'>
                     <div className='lg:flex md:flex gap-6'>
                         <div className='md:w-1/2 lg:w-1/2'>
@@ -71,7 +71,7 @@ const AddPet = () => {
                                 <span className="text-base pl-1 text-gray font-medium">Name</span>
                             </label>
                             
-                                <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
                                 {errors.name && <span className='text-red-500'>Name is required</span>}
                             
                         </div>
@@ -79,7 +79,7 @@ const AddPet = () => {
                             <label >
                                 <span className="text-base pl-1 text-gray font-medium">Category Name</span>
                             </label>
-                            <select defaultValue="default" {...register("category", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl">
+                            <select defaultValue="default" {...register("category", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl">
                                 <option disabled selected>Choose one</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
@@ -95,7 +95,7 @@ const AddPet = () => {
                                 <span className="text-base pl-1 text-gray font-medium">Age</span>
                             </label>
                           
-                                <input type="text" {...register("age", { required: true })} placeholder="Enter Age" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                <input type="text" {...register("age", { required: true })} placeholder="Enter Age" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
                                 {errors.age && <span className='text-red-500'>Age is required</span>} 
                            
                         </div>
@@ -104,7 +104,7 @@ const AddPet = () => {
                                 <span className="text-base pl-1 text-gray font-medium">Image</span>
                             </label>
                             
-                                <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
                                 {errors.image && <span className='text-red-500'>Image is required</span>} 
                             
                         </div>
@@ -114,7 +114,7 @@ const AddPet = () => {
                             <span className="text-base pl-1 text-gray font-medium">Location</span>
                         </label>
                         
-                            <input type="text" {...register("location", { required: true })} placeholder="Enter Location" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                            <input type="text" {...register("location", { required: true })} placeholder="Enter Location" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
                             {errors.location && <span className='text-red-500'>Image is required</span>} 
                         
                     </div>
@@ -126,14 +126,14 @@ const AddPet = () => {
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Short Description</span>
                         </label>
-                        <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" placeholder="Enter Short Description" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
+                        <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" placeholder="Enter Short Description" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
                         {errors.shortDescription && <span className='text-red-500'>ShortDescription is required</span>} 
                     </div>
                     <div className='w-full'>
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Long Description</span>
                         </label>
-                        <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" placeholder="Enter Long Description" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
+                        <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" placeholder="Enter Long Description" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                         {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>} 
                     </div>
 

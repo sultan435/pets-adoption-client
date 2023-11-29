@@ -38,15 +38,13 @@ const AllUsers = () => {
                     <table className="table" >
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
-                                    #
-                                </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Name</th>
-                                <th className="text-lg py-7 font-bold">Email</th>
-                                <th className="text-lg py-7 font-bold">Role</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">#</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Name</th>
+                                <th className="text-lg py-5 font-bold">Email</th>
+                                <th className="text-lg py-5 font-bold">Role</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>                      
@@ -62,7 +60,7 @@ const AllUsers = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="text-lg font-bold">
+                                    <td className="text-base font-bold">
                                         {user.name}
                                     </td>
                                     <td>
@@ -72,18 +70,18 @@ const AllUsers = () => {
                                     </td>
                                     <td>
                                         {
-                                           user.role === "admin" ? <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Admin</button> :  <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">User</button>
+                                           user.role === "admin" ? <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Admin</button> :  <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">User</button>
                                         }
 
                                     </td>
                                     <td>
                                         {
-                                            <button onClick={()=> handleMakeAdmin(user)} className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Admin</button>
+                                            <button onClick={()=> handleMakeAdmin(user)} className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Admin</button>
                                         }
 
                                     </td>
                                     <th>
-                                        <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibol">Delete</button>
+                                        <button className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
                                     </th>
                                 </tr>
                                 )

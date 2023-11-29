@@ -46,15 +46,13 @@ const AllPets = () => {
                     <table className="table" >
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
-                                    #
-                                </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Category</th>
-                                <th className="text-lg py-7 font-bold">Location</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">#</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Category</th>
+                                <th className="text-lg py-5 font-bold">Location</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,12 +69,12 @@ const AllPets = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="text-lg font-bold">{item.name}</div>
+                                            <div className="text-base font-bold">{item.name}</div>
                                             <div className="text-sm font-bold opacity-70">{item.age}</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td className="text-lg font-bold text-gray">
+                                <td className="text-base font-bold text-gray">
 
                                     {item.category}
                                 </td>
@@ -86,17 +84,17 @@ const AllPets = () => {
                                 </td>
                                 <td>
                                     <Link >
-                                        <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Adopted</button>
+                                        <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Adopted</button>
                                     </Link>
                                 </td>
                                 <td>
                                     <Link to={`/dashboard/updatePetItem/${item._id}`}>
-                                        <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Update</button>
+                                        <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Update</button>
                                     </Link>
                                 </td>
                                 <td>
                                     <div onClick={() => handleDelete(item._id)} className=" ">
-                                        <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Delete</button>
+                                        <button className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
                                     </div>
                                 </td>
                             </tr>

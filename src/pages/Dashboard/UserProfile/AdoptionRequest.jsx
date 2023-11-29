@@ -26,15 +26,13 @@ const AdoptionRequest = () => {
 
                             <thead>
                                 <tr className="bg-orange text-black">
-                                    <th className="text-lg py-7 font-bold">
-                                        #
-                                    </th>
-                                    <th className="text-lg py-7 font-bold">Name</th>
-                                    <th className="text-lg py-7 font-bold">Phone Number</th>
-                                    <th className="text-lg py-7 font-bold">Email</th>
-                                    <th className="text-lg py-7 font-bold">Location</th>
-                                    <th className="text-lg py-7 font-bold">Action</th>
-                                    <th className="text-lg py-7 font-bold">Action</th>
+                                    <th className="text-lg py-5 font-bold">#</th>
+                                    <th className="text-lg py-5 font-bold">Name</th>
+                                    <th className="text-lg py-5 font-bold">Phone Number</th>
+                                    <th className="text-lg py-5 font-bold">Email</th>
+                                    <th className="text-lg py-5 font-bold">Location</th>
+                                    <th className="text-lg py-5 font-bold">Action</th>
+                                    <th className="text-lg py-5 font-bold">Action</th>
 
                                 </tr>
                             </thead>
@@ -46,28 +44,28 @@ const AdoptionRequest = () => {
                                             {index + 1}
                                         </th>
 
-                                        <td className="text-lg font-bold">
+                                        <td className="text-base font-bold">
 
                                             {item.name}
                                         </td>
-                                        <td className="text-lg font-bold text-gray">
+                                        <td className="text-base font-bold text-gray">
                                             {item.phone}
                                         </td>
-                                        <td className="text-lg font-bold text-red-400">
+                                        <td className="text-base font-bold text-red-400">
                                             {item.email}
                                         </td>
 
-                                        <td className="text-lg font-bold text-gray">
+                                        <td className="text-base font-bold text-gray">
                                             {item.address}
                                         </td>
                                         <td>
                                             <Link >
-                                                <button className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Accept</button>
+                                                <button className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Accept</button>
                                             </Link>
                                         </td>
                                         <td>
                                             <Link >
-                                                <button className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Reject</button>
+                                                <button className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Reject</button>
                                             </Link>
                                         </td>
                                     </tr>

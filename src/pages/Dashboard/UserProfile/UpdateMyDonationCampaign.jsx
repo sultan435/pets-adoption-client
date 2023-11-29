@@ -8,7 +8,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateMyDonationCampaign = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const { name, shortDescription, maximumAmount, highestAmount, longDescription, _id } = useLoaderData()
     const axiosSecure = useAxiosSecure()
     const axiosPublicHook = useAxiosPublic()
@@ -31,12 +31,12 @@ const UpdateMyDonationCampaign = () => {
                 longDescription: data.longDescription,
                 image: res.data.data.display_url,
                 maximumAmount: data.maximumAmount,
-                highestAmount: data.highestAmount,              
+                highestAmount: data.highestAmount,
             }
             const myDonationPet = await axiosSecure.patch(`/user/donation-campaign-update/${_id}`, updateItem)
             console.log(myDonationPet.data);
-            if (myDonationPet.data.modifiedCount>0) {
-               
+            if (myDonationPet.data.modifiedCount > 0) {
+
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -67,9 +67,10 @@ const UpdateMyDonationCampaign = () => {
                                 <label >
                                     <span className=" text-base pl-1">Image</span>
                                 </label>
-                                <label>
-                                    <input type="file"  {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
-                                </label>
+
+                                <input type="file"  {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
+                                {errors.image && <span className='text-red-500'>Image is required</span>}
+
                             </div>
 
                         </div>

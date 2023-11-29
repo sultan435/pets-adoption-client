@@ -1,37 +1,52 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useDonation from "../../../hooks/useDonation";
 
 const MyDonation = () => {
     const axiosSecure = useAxiosSecure()
-    const { user } = useAuth()
 
-    const { data: myDonations = [] } = useQuery({
-        queryKey: ["myDonations-history", user],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/users/payments?email=${user.email}`)
-            return res.data
-        }
-    })
-    console.log(myDonations);
+    const [myDonations, refetch] = useDonation()
+
+    const handleRfund = (item) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/users/payments-delete/${item._id}`)
+                console.log(res.data);
+                if (res.data.deletedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        title: "Deleted!",                       
+                        text: "Payment has been Refund.",
+                        icon: "success"
+                    });
+                }
+            }
+        });
+    }
+
     return (
-        <div className="pt-16 min-h-screen bg-offWhite">
+        <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">
                 <h1 className='text-5xl text-gray text-center font-bold'>My <span className="text-orange">Donation</span></h1>
                 <div className="overflow-x-auto rounded-lg mt-10">
                     <table className="table">
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
+                                <th className="text-lg py-5 font-bold">
                                     #
                                 </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Name</th>
-                                <th className="text-lg py-7 font-bold">Donation Amount</th>
-
-
-                                <th className="text-lg py-7 font-bold">Action</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Name</th>
+                                <th className="text-lg py-5 font-bold">Donation Amount</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
 
 
                             </tr>
@@ -52,19 +67,15 @@ const MyDonation = () => {
 
                                         </div>
                                     </td>
-                                    <td className="text-lg font-bold">
+                                    <td className="text-base font-bold">
                                         {item.name}
                                     </td>
                                     <td className="">
-                                        <p className="text-xl font-semibold"><span className="text-2xl text-gray">$</span>{item.donation}</p>
+                                        <p className="text-lg font-semibold"><span className="text-xl text-gray">$</span>{item.donation}</p>
                                     </td>
-                                   <td>
-                                        <Link >
-                                            <button className="bg-orange text-lg py-4 px-6 rounded-lg text-black font-semibold">Refund</button>
-                                        </Link>
+                                   <td>                                     
+                                            <button onClick={() => handleRfund(item)} className="bg-orange text-lg py-4 px-6 rounded-lg text-black font-semibold">Refund</button>                                       
                                     </td>
-
-
                                 </tr>
                                 )
                             }

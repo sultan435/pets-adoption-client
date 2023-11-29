@@ -45,8 +45,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: 'donation-details/:id',
-                element: <DonationDetails></DonationDetails>,
-                loader:({params})=> fetch(`https://pet-adoption-server-side.vercel.app/api/v1/user/donation-campaign-details/${params.id}`)
+                element: <DonationDetails></DonationDetails>
 
             },
             {

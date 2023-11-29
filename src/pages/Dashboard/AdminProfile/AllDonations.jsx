@@ -39,14 +39,12 @@ const AllDonations = () => {
                     <table className="table" >
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
-                                    #
-                                </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Maximum Amount</th>                                                   
-                                <th className="text-lg py-7 font-bold">ACTION</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
-                                <th className="text-lg py-7 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">#</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Maximum Amount</th>                                                   
+                                <th className="text-lg py-5 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
+                                <th className="text-lg py-5 font-bold">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>                      
@@ -61,30 +59,30 @@ const AllDonations = () => {
                                                 <img src={item.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                             <div className="">
-                                                <p className="text-lg font-bold">{item.name}</p>                                           
+                                                <p className="text-base font-bold">{item.name}</p>                                           
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="text-lg font-semibold">
-                                    <p className="text-xl font-semibold"><span className="text-2xl text-gray">$</span>{item.maximumAmount}</p>
+                                    <td className="text-base font-semibold">
+                                    <p className="text-lg font-semibold"><span className="text-xl text-gray">$</span>{item.maximumAmount}</p>
                                     </td>
                                     
                                     
                                     <td>
                                         {
-                                            <button  className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Paused</button>
+                                            <button  className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Paused</button>
                                         }
 
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
-                                            <button  className="bg-orange py-4 px-6 rounded-lg text-black font-semibold">Update</button>
+                                            <button  className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Update</button>
                                         </Link>
                                         
 
                                     </td>
                                     <th>
-                                        <button onClick={()=>handleDelete(item._id)} className="bg-gray py-4 px-6 rounded-lg text-white font-semibold">Delete</button>
+                                        <button onClick={()=>handleDelete(item._id)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
                                     </th>
                                 </tr>
                                 )

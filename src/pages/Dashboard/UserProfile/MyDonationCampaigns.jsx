@@ -1,23 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
+import useDonationCampaign from "../../../hooks/useDonationCampaign";
+import useDonation from "../../../hooks/useDonation";
 
 const MyDonationCampaigns = () => {
-    const axiosSecure = useAxiosSecure()
-    const { user } = useAuth()
-
-    const { data: MyDonationCampaigns = [] } = useQuery({
-        queryKey: ["my-donations-campaigns", user],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/user/donation-campaign?email=${user.email}`)
-            return res.data
-        }
-    })
-    // console.log(MyDonationCampaigns);
-
-
+    const [MyDonationCampaigns] = useDonationCampaign()
+    const [myDonations] = useDonation()
+    const totalDonation = myDonations.reduce((total, item) => total + item.donation, 0)
+    // console.log(totalDonation);
+    const pro = (totalDonation / 10000)*100
+    console.log(pro);
 
     return (
         <div className="py-16  min-h-screen bg-offWhite">
@@ -27,16 +19,12 @@ const MyDonationCampaigns = () => {
                     <table className="table">
                         <thead>
                             <tr className="bg-orange text-black">
-                                <th className="text-lg py-7 font-bold">
-                                    #
-                                </th>
-                                <th className="text-lg py-7 font-bold">Image</th>
-                                <th className="text-lg py-7 font-bold">Maximum Donation</th>
-                                <th className="text-lg py-7 font-bold">Progress Bar</th>
-                                <th className="text-lg py-7 font-bold">Action</th>
-                                <th className="text-lg py-7 font-bold">Action</th>
-
-
+                                <th className="text-lg py-5 font-bold">#</th>
+                                <th className="text-lg py-5 font-bold">Image</th>
+                                <th className="text-lg py-5 font-bold">Maximum Donation</th>
+                                <th className="text-lg py-5 font-bold">Progress Bar</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
+                                <th className="text-lg py-5 font-bold">Action</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -53,16 +41,15 @@ const MyDonationCampaigns = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="text-lg font-bold">{item.name}</div>
+                                                <div className="text-base font-bold">{item.name}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="">
-
-                                        <p className="text-xl font-semibold"><span className="text-2xl text-gray">$</span>{item.maximumAmount}</p>
+                                        <p className="text-lg font-semibold"><span className="text-xl text-gray">$</span>{item.maximumAmount}</p>
                                     </td>
                                     <td>
-                                        <ProgressBar completed={item.progress} maxCompleted={100} />
+                                        <ProgressBar completed={pro} maxCompleted={100} />
 
 
                                     </td>
@@ -70,7 +57,7 @@ const MyDonationCampaigns = () => {
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
 
 
-                                            <button className="bg-orange text-lg py-4 px-6 rounded-lg text-black font-semibold">Update</button>
+                                            <button className="bg-orange text-base py-3 px-4 rounded-lg text-black font-semibold">Update</button>
 
                                         </Link>
 
@@ -79,7 +66,7 @@ const MyDonationCampaigns = () => {
                                         <Link >
 
 
-                                            <button className="bg-gray text-lg py-4 px-6 rounded-lg text-white font-semibold">Pause</button>
+                                            <button className="bg-gray text-base py-3 px-4 rounded-lg text-white font-semibold">Pause</button>
 
                                         </Link>
                                     </td>

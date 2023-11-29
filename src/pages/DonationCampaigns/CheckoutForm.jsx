@@ -88,6 +88,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                   
 
                 }
             }
@@ -95,8 +96,13 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
 
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="flex flex-col mb-6">
+
+        <div>
+            <button className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Donate Now</button>
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box text-black">
+                    <form onSubmit={handleSubmit}>
+                    <div className="flex flex-col mb-6">
                 <label>
                     <span className="text-[#403F3F] text-2xl font-semibold">Donation Amount</span>
                 </label>
@@ -125,12 +131,52 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                     },
                 }}
             />
-            <button className="py-2 px-5 bg-orange text-black font-bold rounded-lg mt-6" type="submit" disabled={!stripe || !clientSecret}>
-                Donation Pay
-            </button>
+             <input method="dialog" className=" px-4 py-3 cursor-pointer bg-orange text-white rounded-lg font-medium mt-4 w-full" disabled={!stripe || !clientSecret} type="submit" value="Donation Pay" onClick={() => document.getElementById('my_modal_5').close()} />
             <p className="text-red-600">{error}</p>
             {transactionId && <p className="text-green-600">Your transaction id: {transactionId}</p>}
-        </form >
+                       
+                    </form>
+                </div>
+            </dialog>
+        </div>
+
+
+        // <form onSubmit={handleSubmit}>
+        //     <div className="flex flex-col mb-6">
+        //         <label>
+        //             <span className="text-[#403F3F] text-2xl font-semibold">Donation Amount</span>
+        //         </label>
+        //         <input
+        //             type="number"
+        //             onBlur={(e) => setDonation(e.target.value)}
+        //             name="amount"
+        //             placeholder="Enter Donatio Amount"
+        //             className="border rounded-lg border-gray-400 hover:border-[#f1823d]  transition py-2 mt-2 px-2 bg-[#f8f3e8] outline-none"
+        //             required />
+
+        //     </div>
+        //     <CardElement
+        //         options={{
+        //             style: {
+        //                 base: {
+        //                     fontSize: '16px',
+        //                     color: '#424770',
+        //                     '::placeholder': {
+        //                         color: '#aab7c4',
+        //                     },
+        //                 },
+        //                 invalid: {
+        //                     color: '#9e2146',
+        //                 },
+        //             },
+        //         }}
+        //     />
+        //     <button className="py-2 px-5 bg-orange text-black font-bold rounded-lg mt-6" type="submit" disabled={!stripe || !clientSecret}>
+        //         Donation Pay
+        //     </button>
+        //     <p className="text-red-600">{error}</p>
+        //     {transactionId && <p className="text-green-600">Your transaction id: {transactionId}</p>}
+        // </form >
     );
 };
 
