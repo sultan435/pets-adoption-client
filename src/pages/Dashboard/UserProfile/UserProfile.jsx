@@ -11,7 +11,7 @@ const UserProfile = () => {
     const [myDonations] = useDonation()
 
     const totalDonation = myDonations.reduce((total, item) => total + item.donation, 0)
-    console.log(totalDonation);
+ 
     return (
         <div className="py-16 px-8">
             <h1 className="text-gray">

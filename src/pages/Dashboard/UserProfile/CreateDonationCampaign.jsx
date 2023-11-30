@@ -16,7 +16,6 @@ const CreateDonationCampaign = () => {
     const { user } = useAuth()
 
     const onSubmit = async (data) => {
-        // console.log(data)
 
         const imageFile = { image: data.image[0] }
         const res = await axiosPublicHook.post(image_hosting_api, imageFile, {
@@ -52,7 +51,6 @@ const CreateDonationCampaign = () => {
                 });
             }
         }
-        // console.log(res.data);
     }
     return (
         <div>
@@ -113,7 +111,7 @@ const CreateDonationCampaign = () => {
                             {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>}
                         </div>
 
-                        <input type="submit" value="Create Donation" className='py-4 mt-4 cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
+                        <input type="submit" value="Create Donation" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>
             </div>

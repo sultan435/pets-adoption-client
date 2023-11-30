@@ -49,7 +49,7 @@ const DonationDetails = () => {
                 </NavLink>
             </div>
             <Container>
-                <div className="flex mb-16 gap-10">
+                <div className="flex flex-col lg:flex-row mb-16 gap-10">
                     <div className="flex-1">
                         <img className="w-full h-full rounded-lg" src={donationDetails.image} alt="" />
                     </div>

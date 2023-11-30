@@ -16,9 +16,7 @@ const Sidebar = ({ email }) => {
         const ownerEmail = event.target.ownerEmail.value;
     
         const adopted = { name, email, phone, address,ownerEmail }
-        // console.log(date);
-       
-
+         
         axiosSecure.post('/user/pet-adoption', adopted)
             .then(res => {
                 if (res.data?.insertedId) {

@@ -106,7 +106,7 @@ const UpdateMyDonationCampaign = () => {
                             <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" defaultValue={longDescription} {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                         </div>
 
-                        <input type="submit" value="Update Donation" className='py-4 mt-4 cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
+                        <input type="submit" value="Update Donation" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>
             </div>

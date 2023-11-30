@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = ({ name, image, ownerEmail }) => {
     const [error, setError] = useState('')
@@ -14,11 +15,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
     const stripe = useStripe()
     const elements = useElements()
 
-
     const axiosSecure = useAxiosSecure()
-    // const donation = amount.reduce((total, item) => total + item.price, 0)
-
-    // console.log(amount)
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { donation })
             .then(res => {
@@ -98,7 +95,10 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
     return (
 
         <div>
-            <button className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Donate Now</button>
+            {
+                !user ? <Link to='/login' ><button className="w-full py-4 bg-orange text-black font-bold rounded-xl">Donate Now</button></Link> :
+                <button className="w-full py-4 bg-orange text-black font-bold rounded-xl" onClick={() => document.getElementById('my_modal_5').showModal()}>Donate Now</button>
+            }           
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box text-black">
                     <form onSubmit={handleSubmit}>
@@ -139,44 +139,6 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                 </div>
             </dialog>
         </div>
-
-
-        // <form onSubmit={handleSubmit}>
-        //     <div className="flex flex-col mb-6">
-        //         <label>
-        //             <span className="text-[#403F3F] text-2xl font-semibold">Donation Amount</span>
-        //         </label>
-        //         <input
-        //             type="number"
-        //             onBlur={(e) => setDonation(e.target.value)}
-        //             name="amount"
-        //             placeholder="Enter Donatio Amount"
-        //             className="border rounded-lg border-gray-400 hover:border-[#f1823d]  transition py-2 mt-2 px-2 bg-[#f8f3e8] outline-none"
-        //             required />
-
-        //     </div>
-        //     <CardElement
-        //         options={{
-        //             style: {
-        //                 base: {
-        //                     fontSize: '16px',
-        //                     color: '#424770',
-        //                     '::placeholder': {
-        //                         color: '#aab7c4',
-        //                     },
-        //                 },
-        //                 invalid: {
-        //                     color: '#9e2146',
-        //                 },
-        //             },
-        //         }}
-        //     />
-        //     <button className="py-2 px-5 bg-orange text-black font-bold rounded-lg mt-6" type="submit" disabled={!stripe || !clientSecret}>
-        //         Donation Pay
-        //     </button>
-        //     <p className="text-red-600">{error}</p>
-        //     {transactionId && <p className="text-green-600">Your transaction id: {transactionId}</p>}
-        // </form >
     );
 };
 

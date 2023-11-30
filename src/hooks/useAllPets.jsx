@@ -7,7 +7,7 @@ const useAllPets = () => {
     const {data: allPets = [], refetch} = useQuery({
         queryKey:["allUsers-allPets"],
         queryFn:async()=>{
-            const res = await axiosSecure.get('/user/pets')
+            const res = await axiosSecure.get('/users/pets')
             return res.data
         }
     })

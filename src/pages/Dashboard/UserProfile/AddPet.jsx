@@ -10,14 +10,11 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddPet = () => {
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
     const axiosPublicHook = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
-
-
 
     const onSubmit = async (data) => {
         console.log(data)
@@ -29,7 +26,7 @@ const AddPet = () => {
             }
         })
 
-        const dateTime = moment().format('DD/MM/YYYY');
+        const dateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
         if (user && user.email && res.data.success) {
             const petItem = {
                 name: data.name,
@@ -42,8 +39,6 @@ const AddPet = () => {
                 adoption: false,
                 dateAndTime:dateTime,
                 email: user.email,
-
-
             }
             const addPet = await axiosSecure.post('/user/pet-create', petItem)
             console.log(addPet.data);
@@ -58,7 +53,6 @@ const AddPet = () => {
                 });
             }
         }
-        // console.log(res.data);
     }
     return (
         <div className="bg-offWhite min-h-screen">
@@ -115,13 +109,8 @@ const AddPet = () => {
                         </label>
                         
                             <input type="text" {...register("location", { required: true })} placeholder="Enter Location" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
-                            {errors.location && <span className='text-red-500'>Image is required</span>} 
-                        
+                            {errors.location && <span className='text-red-500'>Image is required</span>}                        
                     </div>
-
-
-
-
                     <div className='w-full'>
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Short Description</span>
@@ -137,7 +126,7 @@ const AddPet = () => {
                         {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>} 
                     </div>
 
-                    <input type="submit" value="Add Pet" className='py-4 mt-4 cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
+                    <input type="submit" value="Add Pet" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                 </form>
             </div>
         </div>

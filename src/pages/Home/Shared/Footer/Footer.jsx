@@ -7,16 +7,18 @@ import img2 from '../../../../assets/category/cat.jpg'
 import img3 from '../../../../assets/category/dog.jpg'
 import img4 from '../../../../assets/category/robbit.jpg'
 import img5 from '../../../../assets/category/pet.jpg'
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
     return (
         <div className="bg-gray">
             <Container>
-                {/* <div className="py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"> */}
                 <div className="py-24 flex justify-between flex-col lg:flex-row">
                     <div className="space-y-8 mb-10">
-                        <h2 className="text-white text-5xl font-bold "><span className="text-orange">PET</span>CO</h2>
+                        <div>
+                            <Link to="/"><h2 className="text-white text-5xl font-bold "><span className="text-orange">PET</span>CO</h2></Link>
+                        </div>
                         <div className="">
                             <p className="text-white font-bold text-lg">Location:<span className="text-slate-300 font-medium"> av. Washington 165, NY CA 54003</span></p>
                             <p className="text-white font-bold text-lg">Phone:<span className="text-slate-300 font-medium"> +8801833225351</span></p>

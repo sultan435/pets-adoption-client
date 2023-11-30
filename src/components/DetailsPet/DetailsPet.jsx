@@ -18,9 +18,9 @@ const DetailsPet = () => {
     })
     console.log(petDetails)
     return (
-        <div className="mt-36">
+        <div className="pt-36">
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-28 p-10">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-28 p-4 md:p-10">
                     <div className="col-span-3">
                         <div className="mb-10">
                             <img className="w-full h-full rounded-xl" src={petDetails.image} alt="" />

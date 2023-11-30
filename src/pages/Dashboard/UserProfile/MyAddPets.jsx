@@ -1,11 +1,21 @@
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useMyAddedPets from "../../../hooks/useMyAddedPets";
+import useAuth from "../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const MyAddPets = () => {
-    const [myPets, refetch] = useMyAddedPets()
     const axiosSecure = useAxiosSecure()
+    const { user } = useAuth()
+
+    const { data: myPets = [], refetch } = useQuery({
+        queryKey: ["my-add-pets", user],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/pets?email=${user.email}`)
+            return res.data
+        }
+    })
+
     
     const handleDelete = (id) => {
         Swal.fire({

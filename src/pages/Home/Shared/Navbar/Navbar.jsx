@@ -105,21 +105,20 @@ const Navbar = () => {
                 </div>
             </div>
             <Container>
-                <nav className={`py-6 ${isSticky ? "sticky top-0 left-0 right-0 border-b border-slate-300 transition-all duration-300 ease-in" : "border-b border-slate-300 transition-all duration-300 ease-in"}`}>
+                <nav className={`py-6 ${isSticky ? "sticky top-0 left-0 right-0 md:border-b border-slate-300 transition-all duration-300 ease-in" : "md:border-b border-slate-300 transition-all duration-300 ease-in"}`}>
                     {/* for large devices */}
                     <div className="flex justify-between items-center text-base gap-8">
-                        <div className="flex justify-center items-center">
-                            <img className="text-pink w-12 h-12" src={logo} alt="" />
-                            <h5 className="text-3xl font-bold text-gray "><span className="text-orange">PET</span>CO</h5>
-                        </div>
-
+                        <Link>
+                            <div className="flex justify-center items-center">
+                                <img className="text-pink w-12 h-12" src={logo} alt="" />
+                                <h5 className="text-3xl font-bold text-gray "><span className="text-orange">PET</span>CO</h5>
+                            </div>
+                        </Link>
                         {/* menu item for large devices */}
                         <ul className="lg:flex space-x-12 hidden list-none">
                             {navItems}
                         </ul>
                         <div className="space-x-12 hidden lg:flex items-center">
-                            {/* <button className="bg-transparent text-white border rounded-full">
-                        </button> */}
                             <div className="avatar cursor-pointer">
                                 <div onClick={toggleDashboard} className="w-12 rounded-full">
                                     {
