@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 
 const AllPets = () => {
-
     const [allPets, refetch] = useAllPets()
 
     const axiosSecure = useAxiosSecure()
@@ -25,16 +24,12 @@ const AllPets = () => {
                 const res = await axiosSecure.delete(`/user/pets-delete/${id}`)
                 if (res.data.deletedCount > 0) {
                     refetch()
-
                     Swal.fire({
                         title: "Deleted!",
                         text: "item has been deleted.",
                         icon: "success"
                     });
                 }
-
-
-
             }
         });
     }

@@ -29,9 +29,7 @@ const DonationCampaignCard = ({ donation }) => {
                             <span className="text-violet font-semibold text-lg">$10000</span><br />
                             Still need
                         </p>
-                    </div>
-                   
-                    
+                    </div>                  
                 </div>
                 <Link to={`/donation-details/${_id}`} className="flex justify-center">
                     <button className="w-full py-4 bg-orange text-black font-bold rounded-b-xl">Details</button>

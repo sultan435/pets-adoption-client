@@ -24,12 +24,14 @@ import AllUsers from "../pages/Dashboard/AdminProfile/AllUsers";
 import AllPets from "../pages/Dashboard/AdminProfile/AllPets";
 import AllDonations from "../pages/Dashboard/AdminProfile/AllDonations";
 import AdminRoute from "./AdminRoute";
+import Error from "../pages/Error/Error";
 
 
 const Routes = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: '/',

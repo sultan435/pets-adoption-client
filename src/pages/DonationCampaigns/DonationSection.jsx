@@ -29,15 +29,8 @@ const DonationSection = ({donation}) => {
                             <span className="text-violet font-semibold text-lg">$5000</span><br />
                             Still need
                         </p>
-                    </div>
-                   {/* <div className="mt-4">
-                   <ProgressBar completed={progress} maxCompleted={200} />
-                   </div> */}
-                    
-                </div>
-                {/* <Link to={`/donation-details/${_id}`} className="flex justify-center">
-                    <button className="w-full py-4 bg-pink text-white font-bold rounded-b-xl">Details</button>
-                </Link> */}
+                    </div>                      
+                </div>               
             </div>
         </div>
     );

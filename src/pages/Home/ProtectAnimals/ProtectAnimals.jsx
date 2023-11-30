@@ -43,7 +43,6 @@ const ProtectAnimals = () => {
                                 </p>
                             </div>
                         </div>                      
-
                     </div>
                     <div>
                         <div className="relative flex flex-col bg-offWhite shadow-md hover:-translate-y-2 overflow-hidden transition duration-200 rounded-xl bg-clip-border">
@@ -60,7 +59,6 @@ const ProtectAnimals = () => {
                                 </p>
                             </div>
                         </div>                      
-
                     </div>
                     <div>
                         <div className="relative flex flex-col  bg-offWhite shadow-md hover:-translate-y-2 overflow-hidden transition duration-200 rounded-xl bg-clip-border">
@@ -70,16 +68,13 @@ const ProtectAnimals = () => {
                             <div className="p-6 text-left">
                                 <h4 className="block mb-2 text-xl font-bold  tracking-normal text-gray">
                                 Protecting animal area
-                                </h4>
-                                
+                                </h4>                                
                                 <p className="block text-base font-medium  text-slate-800 bg-clip-text">
                                 Create a powerful and effective message for fundraising and YOU WILL GET DONATIONS instead of blank stares from prospective donors
                                 </p>
                             </div>
                         </div>                      
-
-                    </div>
-                    
+                    </div>                   
                 </div>
             </Container>
         </div>

@@ -31,7 +31,6 @@ const MyDonation = () => {
             }
         });
     }
-
     return (
         <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">
@@ -47,8 +46,6 @@ const MyDonation = () => {
                                 <th className="text-lg py-5 font-bold">Name</th>
                                 <th className="text-lg py-5 font-bold">Donation Amount</th>
                                 <th className="text-lg py-5 font-bold">Action</th>
-
-
                             </tr>
                         </thead>
                         <tbody >

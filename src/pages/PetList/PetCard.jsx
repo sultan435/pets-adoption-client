@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-
-
 const PetCard = ({ pet }) => {
     const { image, name, age, location, _id } = pet;
     return (

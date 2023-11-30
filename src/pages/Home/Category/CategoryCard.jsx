@@ -9,7 +9,6 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 const CategoryCard = () => {
     const params = useParams()
-
     const axiosSecure = useAxiosSecure()
 
     const {data: categoryCard = []} = useQuery({
@@ -19,7 +18,6 @@ const CategoryCard = () => {
             return res.data
         }
     })
-    // console.log(categoryCard);
     return (
         <div className="pt-36 pb-16">
             <div className="hero h-[350px]" style={{ backgroundImage: `url(${image})` }}>

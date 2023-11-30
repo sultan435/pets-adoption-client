@@ -94,7 +94,7 @@ const Navbar = () => {
                             <span className='cursor-pointer bg-gray p-2 rounded-full hover:text-[#e41f05]'><AiOutlineInstagram /></span>
                         </div>
                         <Link to='/dashboard/userProfile'>
-                            <div className="text-gray border-l border-slate-300 flex items-center justify-center gap-1 px-4 py-3">
+                            <div className="border-l border-slate-300 text-orange flex items-center justify-center gap-1 px-4 py-3">
                                 <span><FaUser></FaUser></span>
                                 {
                                     user ? user.displayName : <span>MyAA account</span>

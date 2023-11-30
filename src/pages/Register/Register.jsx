@@ -27,7 +27,6 @@ const Register = () => {
                 "content-type": "multipart/form-data",
             }
         })
-        console.log(res.data);
         if (res.data.success) {
 
             createUser(data.email, data.password)
@@ -48,7 +47,6 @@ const Register = () => {
                                     }
                                 })
                         })
-                    // reset()
                 })
         }
 

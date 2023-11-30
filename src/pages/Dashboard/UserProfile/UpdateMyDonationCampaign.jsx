@@ -15,8 +15,6 @@ const UpdateMyDonationCampaign = () => {
 
 
     const onSubmit = async (data) => {
-        // console.log(data)
-
         const imageFile = { image: data.image[0] }
         const res = await axiosPublicHook.post(image_hosting_api, imageFile, {
             headers: {
@@ -34,7 +32,6 @@ const UpdateMyDonationCampaign = () => {
                 highestAmount: data.highestAmount,
             }
             const myDonationPet = await axiosSecure.patch(`/user/donation-campaign-update/${_id}`, updateItem)
-            console.log(myDonationPet.data);
             if (myDonationPet.data.modifiedCount > 0) {
 
                 Swal.fire({
@@ -46,7 +43,6 @@ const UpdateMyDonationCampaign = () => {
                 });
             }
         }
-        // console.log(res.data);
     }
     return (
         <div>
@@ -67,12 +63,9 @@ const UpdateMyDonationCampaign = () => {
                                 <label >
                                     <span className=" text-base pl-1">Image</span>
                                 </label>
-
                                 <input type="file"  {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
                                 {errors.image && <span className='text-red-500'>Image is required</span>}
-
                             </div>
-
                         </div>
                         <div className='lg:flex md:flex gap-6'>
                             <div className='md:w-1/2 lg:w-1/2'>
@@ -91,7 +84,6 @@ const UpdateMyDonationCampaign = () => {
                                     <input type="number" defaultValue={highestAmount} {...register("highestAmount", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
                                 </label>
                             </div>
-
                         </div>
                         <div className='w-full'>
                             <label >
@@ -105,7 +97,6 @@ const UpdateMyDonationCampaign = () => {
                             </label>
                             <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" defaultValue={longDescription} {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                         </div>
-
                         <input type="submit" value="Update Donation" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>

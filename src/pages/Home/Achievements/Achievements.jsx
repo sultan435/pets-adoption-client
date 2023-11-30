@@ -30,9 +30,7 @@ const Achievements = () => {
                             <div className="text-center">
                                 <span className="text-6xl font-bold text-orange">160</span>
                                 <p className="text-gray text-lg font-medium">Volunteers</p>
-                            </div>
-                            
-                            
+                            </div>                                                   
                         </div>
                     </div>
                 </div>

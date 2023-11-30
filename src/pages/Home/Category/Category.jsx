@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 
 const Category = () => {
-
     const axiosSecure = useAxiosSecure()
 
     const { data: categories = [] } = useQuery({
@@ -16,8 +15,6 @@ const Category = () => {
             return res.data;
         }
     })
-
-    // console.log(categories)
     return (
         <div className="mb-10">
             <Container>
@@ -35,8 +32,7 @@ const Category = () => {
                             </div>
                             <p className="text-gray font-bold text-xl my-4 text-center">{item.category}</p>
                         </div>)
-                    }
-                    
+                    }                  
                 </div>
             </Container>
         </div>

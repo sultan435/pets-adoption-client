@@ -8,15 +8,14 @@ const AdoptionRequest = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
 
-    const { data: adoptionRequest = [],refetch } = useQuery({
+    const { data: adoptionRequest = [], refetch } = useQuery({
         queryKey: ["pet-adoption-request", user],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/pet-adoption?email=${user.email}`)
             return res.data
         }
     })
-
-    const handleReject = (id) =>{
+    const handleReject = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -30,7 +29,6 @@ const AdoptionRequest = () => {
                 const res = await axiosSecure.delete(`/user/pet-rejects/${id}`)
                 if (res.data.deletedCount > 0) {
                     refetch()
-
                     Swal.fire({
                         title: "Rejected!",
                         text: "Adoption request has been rejected",
@@ -41,7 +39,6 @@ const AdoptionRequest = () => {
         });
     }
     return (
-
         <div>
             <div className="py-16 min-h-screen bg-offWhite">
                 <div className="px-8">
@@ -64,13 +61,10 @@ const AdoptionRequest = () => {
                             <tbody >
                                 {
                                     adoptionRequest?.map((item, index) => <tr key={item._id}>
-
                                         <th>
                                             {index + 1}
                                         </th>
-
                                         <td className="text-base font-bold">
-
                                             {item.name}
                                         </td>
                                         <td className="text-base font-bold text-gray">
@@ -90,11 +84,10 @@ const AdoptionRequest = () => {
                                         </td>
                                         <td>
                                             <Link >
-                                                <button onClick={()=> handleReject(item._id)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Reject</button>
+                                                <button onClick={() => handleReject(item._id)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Reject</button>
                                             </Link>
                                         </td>
                                     </tr>
-
                                     )
                                 }
                             </tbody>

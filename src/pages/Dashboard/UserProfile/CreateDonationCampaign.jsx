@@ -39,7 +39,6 @@ const CreateDonationCampaign = () => {
                 progress: progress,
             }
             const addPet = await axiosSecure.post('/user/create-donation-campaign', petItem)
-            console.log(addPet.data);
             if (addPet.data.insertedId) {
                 reset()
                 Swal.fire({
@@ -62,20 +61,17 @@ const CreateDonationCampaign = () => {
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
                                     <span className="text-base pl-1 text-gray font-medium">Name</span>
-                                </label>
-                               
+                                </label>                              
                                     <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
                                     {errors.name && <span className='text-red-500'>Name is required</span>}
                             </div>
                             <div className='md:w-1/2 lg:w-1/2'>
                                 <label >
                                     <span className="text-base pl-1 text-gray font-medium">Image</span>
-                                </label>
-                               
+                                </label>                              
                                     <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
                                     {errors.image && <span className='text-red-500'>Image is required</span>}
                             </div>
-
                         </div>
                         <div className='lg:flex md:flex gap-6'>
                             <div className='md:w-1/2 lg:w-1/2'>
@@ -94,7 +90,6 @@ const CreateDonationCampaign = () => {
                                     <input type="number" {...register("highestAmount", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" />
                                     {errors.highestAmount && <span className='text-red-500'>HighestAmount is required</span>}
                             </div>
-
                         </div>
                         <div className='w-full'>
                             <label >
@@ -110,7 +105,6 @@ const CreateDonationCampaign = () => {
                             <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" placeholder="Enter Long Description" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                             {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>}
                         </div>
-
                         <input type="submit" value="Create Donation" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>

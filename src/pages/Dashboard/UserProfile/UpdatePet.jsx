@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-
 const UpdatePet = () => {
     const { register, handleSubmit} = useForm()
     const {name, category, age, location, shortDescription, longDescription, _id} = useLoaderData()
@@ -15,9 +14,7 @@ const UpdatePet = () => {
     const axiosPublicHook = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
 
-
     const onSubmit = async(data)=>{
-        console.log(data);
         const imageFile = {image: data.image[0]}
         const res = await axiosPublicHook.post(image_hosting_api, imageFile, {
             headers:{
@@ -35,7 +32,6 @@ const UpdatePet = () => {
                 image:res.data.data.display_url,
             }
             const updatePet = await axiosSecure.patch(`/user/pet-update/${_id}`, petItem)
-            // console.log(addPet.data);
             if(updatePet.data.modifiedCount>0){
                 Swal.fire({
                     position: "top-end",
@@ -115,7 +111,6 @@ const UpdatePet = () => {
                             </label>
                             <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-2 outline-none rounded-xl" defaultValue={longDescription} {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
                         </div>
-
                         <input type="submit" value="Update Pet" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                     </form>
                 </div>

@@ -76,7 +76,6 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
 
                 }
                 const res = await axiosSecure.post('/users/payments', payment)
-                // console.log('payment save', res.data);
                 if (res.data?.insertedId) {
                     Swal.fire({
                         position: "top-end",

@@ -20,14 +20,12 @@ const Login = () => {
     const from = location.state?.from.pathname || '/'
 
     const onSubmit = (data) => {
-        console.log(data);
         loggedUser(data.email, data.password)
             .then(result => {
                 console.log('user login successfully', result.user)
                 navigate(from, { replace: true })
             })
     }
-
     const handleGoogleLogin = (googleProvider) => {
         googleUser(googleProvider)
             .then((result) => {
@@ -44,7 +42,6 @@ const Login = () => {
                             navigate('/')
                         }
                     })
-
             })
     }
     return (

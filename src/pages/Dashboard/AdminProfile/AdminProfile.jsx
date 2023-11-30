@@ -29,9 +29,7 @@ const AdminProfile = () => {
                     <div className="space-y-1">
                         <p className="text-2xl font-medium "> All <span className="text-orange">User:</span> <span className=" text-2xl font-medium">{usersInfo.length}</span></p>
                         <p className="text-2xl font-medium"> Users All <span className="text-orange">Pets:</span> <span className=" text-2xl font-medium">{allPets.length}</span></p>
-                        <p className="text-2xl font-medium"> Users All <span className="text-orange">Donations:</span> <span className=" text-2xl font-medium">{donationsItem.length}</span></p>
-                       
-                        {/* <p className="text-2xl font-medium"> All User: <span className=" text-2xl font-medium"> $ </span>{totalDonation}</p> */}
+                        <p className="text-2xl font-medium"> Users All <span className="text-orange">Donations:</span> <span className=" text-2xl font-medium">{donationsItem.length}</span></p>                                         
                     </div>
 
 

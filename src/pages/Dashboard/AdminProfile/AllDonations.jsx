@@ -77,9 +77,7 @@ const AllDonations = () => {
                                     <td>
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
                                             <button  className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Update</button>
-                                        </Link>
-                                        
-
+                                        </Link>                                       
                                     </td>
                                     <th>
                                         <button onClick={()=>handleDelete(item._id)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>

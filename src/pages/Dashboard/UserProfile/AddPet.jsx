@@ -17,15 +17,12 @@ const AddPet = () => {
     const { user } = useAuth()
 
     const onSubmit = async (data) => {
-        console.log(data)
-
         const imageFile = { image: data.image[0] }
         const res = await axiosPublicHook.post(image_hosting_api, imageFile, {
             headers: {
                 "content-type": "multipart/form-data",
             }
         })
-
         const dateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
         if (user && user.email && res.data.success) {
             const petItem = {
@@ -37,11 +34,10 @@ const AddPet = () => {
                 longDescription: data.longDescription,
                 image: res.data.data.display_url,
                 adoption: false,
-                dateAndTime:dateTime,
+                dateAndTime: dateTime,
                 email: user.email,
             }
             const addPet = await axiosSecure.post('/user/pet-create', petItem)
-            console.log(addPet.data);
             if (addPet.data.insertedId) {
                 reset()
                 Swal.fire({
@@ -64,10 +60,8 @@ const AddPet = () => {
                             <label >
                                 <span className="text-base pl-1 text-gray font-medium">Name</span>
                             </label>
-                            
-                                <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
-                                {errors.name && <span className='text-red-500'>Name is required</span>}
-                            
+                            <input type="text" {...register("name", { required: true })} placeholder="Enter Name" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
+                            {errors.name && <span className='text-red-500'>Name is required</span>}
                         </div>
                         <div className='md:w-1/2 lg:w-1/2'>
                             <label >
@@ -88,44 +82,40 @@ const AddPet = () => {
                             <label >
                                 <span className="text-base pl-1 text-gray font-medium">Age</span>
                             </label>
-                          
-                                <input type="text" {...register("age", { required: true })} placeholder="Enter Age" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
-                                {errors.age && <span className='text-red-500'>Age is required</span>} 
-                           
+
+                            <input type="text" {...register("age", { required: true })} placeholder="Enter Age" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
+                            {errors.age && <span className='text-red-500'>Age is required</span>}
                         </div>
                         <div className='md:w-1/2 lg:w-1/2'>
                             <label >
                                 <span className="text-base pl-1 text-gray font-medium">Image</span>
                             </label>
-                            
-                                <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
-                                {errors.image && <span className='text-red-500'>Image is required</span>} 
-                            
+
+                            <input type="file" {...register("image", { required: true })} className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
+                            {errors.image && <span className='text-red-500'>Image is required</span>}
                         </div>
                     </div>
                     <div className='w-full'>
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Location</span>
                         </label>
-                        
-                            <input type="text" {...register("location", { required: true })} placeholder="Enter Location" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
-                            {errors.location && <span className='text-red-500'>Image is required</span>}                        
+                        <input type="text" {...register("location", { required: true })} placeholder="Enter Location" className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" />
+                        {errors.location && <span className='text-red-500'>Image is required</span>}
                     </div>
                     <div className='w-full'>
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Short Description</span>
                         </label>
                         <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" placeholder="Enter Short Description" {...register("shortDescription", { required: true })} id="" cols="30" rows="1"></textarea>
-                        {errors.shortDescription && <span className='text-red-500'>ShortDescription is required</span>} 
+                        {errors.shortDescription && <span className='text-red-500'>ShortDescription is required</span>}
                     </div>
                     <div className='w-full'>
                         <label >
                             <span className="text-base pl-1 text-gray font-medium">Long Description</span>
                         </label>
                         <textarea className="w-full border border-slate-400 py-3 px-4 bg-white my-1 outline-none rounded-xl" placeholder="Enter Long Description" {...register("longDescription", { required: true })} id="" cols="30" rows="3"></textarea>
-                        {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>} 
+                        {errors.longDescription && <span className='text-red-500'>LongDescription is required</span>}
                     </div>
-
                     <input type="submit" value="Add Pet" className='py-4 mt-4 outline-none cursor-pointer w-full rounded-lg bg-orange text-black text-lg font-bold' />
                 </form>
             </div>

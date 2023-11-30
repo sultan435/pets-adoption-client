@@ -16,7 +16,7 @@ const DetailsPet = () => {
             return res.data;
         }
     })
-    console.log(petDetails)
+    // console.log(petDetails)
     return (
         <div className="pt-36">
             <Container>

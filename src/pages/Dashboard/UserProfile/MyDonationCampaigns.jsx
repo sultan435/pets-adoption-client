@@ -7,9 +7,7 @@ const MyDonationCampaigns = () => {
     const [MyDonationCampaigns] = useDonationCampaign()
     const [myDonations] = useDonation()
     const totalDonation = myDonations.reduce((total, item) => total + item.donation, 0)
-    // console.log(totalDonation);
-    const pro = (totalDonation / 10000)*100
-    console.log(pro);
+    const progress = (totalDonation / 10000)*100
 
     return (
         <div className="py-16  min-h-screen bg-offWhite">
@@ -49,29 +47,18 @@ const MyDonationCampaigns = () => {
                                         <p className="text-lg font-semibold"><span className="text-xl text-gray">$</span>{item.maximumAmount}</p>
                                     </td>
                                     <td>
-                                        <ProgressBar completed={pro} maxCompleted={100} />
-
-
+                                        <ProgressBar completed={progress} maxCompleted={100} />
                                     </td>
                                     <td>
                                         <Link to={`/dashboard/updateMyDonationCampaign/${item._id}`}>
-
-
                                             <button className="bg-orange text-base py-3 px-4 rounded-lg text-black font-semibold">Update</button>
-
                                         </Link>
-
                                     </td>
                                     <td>
                                         <Link >
-
-
                                             <button className="bg-gray text-base py-3 px-4 rounded-lg text-white font-semibold">Pause</button>
-
                                         </Link>
                                     </td>
-
-
                                 </tr>
                                 )
                             }

@@ -35,8 +35,6 @@ const UserProfile = () => {
                         <p className="text-2xl font-medium">My <span className="text-orange">Pets </span>Items: <span className=" text-2xl font-medium"></span>{myPets.length}</p>
                         <p className="text-2xl font-medium">My <span className="text-orange">Donation Campaigns </span>Items: <span className=" text-2xl font-medium"></span>{MyDonationCampaigns.length}</p>
                     </div>
-
-
                 </div>
             </div>
         </div>

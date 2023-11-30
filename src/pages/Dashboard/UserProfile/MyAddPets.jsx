@@ -14,9 +14,7 @@ const MyAddPets = () => {
             const res = await axiosSecure.get(`/users/pets?email=${user.email}`)
             return res.data
         }
-    })
-
-    
+    })  
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -31,10 +29,8 @@ const MyAddPets = () => {
                 const res = await axiosSecure.delete(`/user/pets-delete/${id}`)
                 if (res.data.deletedCount > 0) {
                     refetch()
-
                     Swal.fire({
                         title: "Deleted!",
-                        // text: `${id.name} has been deleted.`,
                         text: "item has been deleted.",
                         icon: "success"
                     });
@@ -42,7 +38,6 @@ const MyAddPets = () => {
             }
         });
     }
-
     return (
         <div className="py-16 min-h-screen bg-offWhite">
             <div className="px-8">

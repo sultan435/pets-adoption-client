@@ -1,6 +1,5 @@
 import Container from "../../../components/Ui/Container/Container";
 
-
 const Newsletter = () => {
     return (
         <div className="my-28">

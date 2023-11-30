@@ -90,13 +90,11 @@ const AllUsers = () => {
                                         {
                                            user.role === "admin" ? "ADMIN" : "USER"
                                         }
-
                                     </td>
                                     <td>
                                         {
                                             <button onClick={()=> handleMakeAdmin(user)} className="bg-orange py-3 px-4 rounded-lg text-black font-semibold">Admin</button>
                                         }
-
                                     </td>
                                     <th>
                                         <button onClick={()=> handleDeleteUser(user)} className="bg-gray py-3 px-4 rounded-lg text-white font-semibold">Delete</button>
