@@ -1,9 +1,9 @@
 Live side: https://pet-adoption-project-ac299.web.app/
 
 Technology: 
-ReactJs
-Tailwind CSS
-DaisyUi
+- ReactJs
+- Tailwind CSS
+- DaisyUi
 Firebase
 NodeJs
 MongoDB
