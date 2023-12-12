@@ -49,6 +49,9 @@ const Navbar = () => {
         <li><NavLink to='/petList' className={({ isActive }) =>
             isActive ? 'text-orange underline font-bold uppercase' : 'text-base font-bold text-gray uppercase hover:text-orange cursor-pointer'
         }>Pet List</NavLink></li>
+        <li><NavLink to='/services' className={({ isActive }) =>
+            isActive ? 'text-orange underline font-bold uppercase' : 'text-base font-bold text-gray uppercase hover:text-orange cursor-pointer'
+        }>Services</NavLink></li>
         <li><NavLink to='/donationCampaigns' className={({ isActive }) =>
             isActive ? 'text-orange underline font-bold uppercase' : 'text-base font-bold text-gray uppercase hover:text-orange cursor-pointer'
         }>Donation Campaigns</NavLink></li>

@@ -25,6 +25,7 @@ import AllPets from "../pages/Dashboard/AdminProfile/AllPets";
 import AllDonations from "../pages/Dashboard/AdminProfile/AllDonations";
 import AdminRoute from "./AdminRoute";
 import Error from "../pages/Error/Error";
+import Services from "../pages/Services/Services";
 
 
 const Routes = createBrowserRouter([
@@ -40,6 +41,10 @@ const Routes = createBrowserRouter([
             {
                 path: 'petList',
                 element: <PetList></PetList>
+            },
+            {
+                path: 'services',
+                element: <Services></Services>
             },
             {
                 path: 'donationCampaigns',

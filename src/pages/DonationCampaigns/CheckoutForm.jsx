@@ -83,9 +83,7 @@ const CheckoutForm = ({ name, image, ownerEmail }) => {
                         title: "Donation Payment has been successfully",
                         showConfirmButton: false,
                         timer: 1500
-                    });
-                   
-
+                    });                  
                 }
             }
         }

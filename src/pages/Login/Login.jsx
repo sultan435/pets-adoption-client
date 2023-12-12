@@ -24,7 +24,7 @@ const Login = () => {
             .then(result => {
                 console.log('user login successfully', result.user)
                 navigate(from, { replace: true })
-            })
+            })     
     }
     const handleGoogleLogin = (googleProvider) => {
         googleUser(googleProvider)
@@ -38,7 +38,7 @@ const Login = () => {
                 axiosPublic.post('/users-info', user)
                     .then(res => {
                         if (res.data.insertedId || res.data.insertedId === null) {
-                            console.log('user added to the database');
+                            // console.log('user added to the database');
                             navigate('/')
                         }
                     })
@@ -65,10 +65,12 @@ const Login = () => {
                                             </label>
                                             <input
                                                 type="email"
-                                                {...register("email", { required: true })}
+                                                {...register("email", { required: true  })}
+                                                
                                                 className="border-b border-slate-600 hover:border-orange hover:border-b-2 transition py-2 w-full bg-offWhite outline-none"
                                             />
                                             {errors.email && <span className='text-red-500'>Email is required</span>}
+                                            
                                         </div>
                                         <div className="mb-4">
                                             <label >
