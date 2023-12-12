@@ -1,8 +1,18 @@
-# React + Vite
+Live side: https://pet-adoption-project-ac299.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technology: 
+- ReactJs
+- Tailwind CSS
+- DaisyUi
+- Firebase
+- NodeJs
+- MongoDB
+- ExpressJs
+- React-Router
+- Lottie-react
+- Moment
+- Sweetalert2
+- React-Scroll
+- React-hook-form,Axios
+- Tanstack-query
+- stripe
